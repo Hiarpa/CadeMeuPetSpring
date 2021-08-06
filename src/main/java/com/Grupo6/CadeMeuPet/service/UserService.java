@@ -21,6 +21,8 @@ public class UserService {
     }
 
     public List<UserApp> getUsers(){
+//        UserApp user = userRepository.getById(1);
+//        user.formatarData();
         return userRepository.findAll();
     }
 
@@ -45,16 +47,20 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(Integer userId, String email, int telefone, String genero, java.sql.Date dataNasc){
+    public void updateUser(Integer userId, UserApp userDetails){
         UserApp user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException(" user with id " + userId + " does not exists."));
 
-        if (email != null && email.length() > 0 && !Objects.equals(user.getEmail(), email)){
-            user.setEmail(email);
+        if (userDetails.getEmail() != null && userDetails.getEmail().length() > 0 && !Objects.equals(user.getEmail(), userDetails.getEmail())){
+            user.setEmail(userDetails.getEmail());
         }
-        if (genero != null && genero.length() > 0 && !Objects.equals(user.getGenero(), genero)){
-            user.setGenero(genero);
+        if (userDetails.getGenero() != null && userDetails.getGenero().length() > 0 && !Objects.equals(user.getGenero(), userDetails.getGenero())){
+            user.setGenero(userDetails.getGenero());
         }
-        user.setTelefone(telefone);
-        user.setDataNasc(dataNasc);
+        if(userDetails.getTelefone() != 0){
+            user.setTelefone(userDetails.getTelefone());
+        }
+        if(userDetails.getDataNasc() != null && userDetails.getGenero().length() > 0){
+            user.setDataNasc(userDetails.getDataNasc());
+        }
     }
 }

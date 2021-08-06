@@ -1,15 +1,13 @@
 package com.Grupo6.CadeMeuPet.service;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
-import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.repository.PetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,10 +29,10 @@ public class PetsService {
 
     //Colocar idUser
     public void addNewPet(Pets pet){
-        Optional<Pets> petsOptional = petsRepository.findPetById(pet.getIdPets());
-        if(petsOptional.isPresent()){
-            throw new IllegalStateException("id already in use!!");
-        }
+        Pets pets = petsRepository.findPetById(pet.getIdPets());
+//        if(pets.isPresent()){
+//            throw new IllegalStateException("id already in use!!");
+//        }
         petsRepository.save(pet);
 //      pet.setUser(userRepository.getUserById(userId);
     }
@@ -47,4 +45,21 @@ public class PetsService {
         petsRepository.deleteById(petId);
     }
 
+    @Transactional
+    public void updatePet(Integer petId, Pets petDetails){
+        Pets pet = petsRepository.findPetById(petId);
+
+        if (petDetails.getNome() != null && petDetails.getNome().length() > 0 && !Objects.equals(pet.getNome(), petDetails.getNome())){
+            pet.setNome(petDetails.getNome());
+        }
+
+        if (petDetails.getTipo_pet() != null && petDetails.getTipo_pet().length() > 0 && !Objects.equals(pet.getTipo_pet(),petDetails.getTipo_pet())){
+            pet.setTipo_pet(petDetails.getTipo_pet());
+        }
+
+        if (petDetails.getGenero() != null && petDetails.getGenero().length() > 0 && !Objects.equals(pet.getGenero(),petDetails.getGenero())){
+            pet.setGenero(pet.getGenero());
+        }
+
+    }
 }

@@ -3,6 +3,7 @@ package com.Grupo6.CadeMeuPet.controller;
 import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,15 +41,8 @@ public class AddressController {
         addressService.deleteAddress(addressId);
     }
 
-    //@RequestBody
-    @PutMapping(path = "{addressId}")
-    public void updateAddress(
-            @PathVariable("addressId") Integer addressId,
-            @RequestParam(required = false) String rua,
-            @RequestParam(required = false) int cep,
-            @RequestParam(required = false) String estado,
-            @RequestParam(required = false) int numero,
-            @RequestParam(required = false) String complemento) {
-        addressService.updateAddress(addressId, rua, cep, estado , numero, complemento );
+    @PatchMapping(path = "{addressId}")
+    public void updateAddress(@PathVariable("addressId") Integer addressId, @RequestBody Address addressDetails) {
+        addressService.updateAddress(addressId, addressDetails);
     }
 }

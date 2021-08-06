@@ -16,7 +16,7 @@ import java.util.Optional;
 public class AddressConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner1(AddressRepository addressRepository){
+    CommandLineRunner commandLineRunner1(AddressRepository addressRepository, UserRepository userRepository){
         return args -> {
             Address a1 = new Address(697945455,"Rua 18",4,"Ao lado da Igreja Batista","Amazonas");
             Address a2 = new Address(976342428,"Rua Silva Bueno",20,"Perto do Mercadinho Barato","São Paulo");

@@ -29,10 +29,10 @@ public class AddressService {
     }
 
     public void addNewAddress(Address address){
-        Optional<Address> addressOptional = addressRepository.findAddressById(address.getIdAddress());
-        if(addressOptional.isPresent()){
-            throw new IllegalStateException("id already in use!!");
-        }
+        Address addressOptional = addressRepository.findAddressById(address.getIdAddress());
+//        if(addressOptional.isPresent()){
+//            throw new IllegalStateException("id already in use!!");
+//        }
         addressRepository.save(address);
     }
 
@@ -43,20 +43,25 @@ public class AddressService {
         }
         addressRepository.deleteById(addressId);
     }
-    @Transactional
-    public void updateAddress(Integer addressId, String rua, int cep, String estado, int numero, String complemento){
-        Address address = addressRepository.findById(addressId).orElseThrow(() -> new IllegalStateException(" address with id " + addressId + " does not exists."));
 
-        if (rua != null && rua.length() > 0 && !Objects.equals(address.getRua(), rua)){
-            address.setRua(rua);
+    @Transactional
+    public void updateAddress(Integer addressId, Address addressDetails){
+        Address address = addressRepository.findAddressById(addressId);
+
+        if (addressDetails.getRua() != null && addressDetails.getRua().length() > 0 && !Objects.equals(address.getRua(), addressDetails.getRua())){
+            address.setRua(addressDetails.getRua());
         }
-        if (estado != null && estado.length() > 0 && !Objects.equals(address.getEstado(), estado)){
-            address.setEstado(estado);
+        if (addressDetails.getEstado() != null && addressDetails.getEstado().length() > 0 && !Objects.equals(address.getEstado(), addressDetails.getEstado())){
+            address.setEstado(addressDetails.getEstado());
         }
-        if (complemento != null && complemento.length() > 0 && !Objects.equals(address.getComplemento(), complemento)){
-            address.setEstado(complemento);
+        if (addressDetails.getComplemento() != null && addressDetails.getComplemento().length() > 0 && !Objects.equals(address.getComplemento(), addressDetails.getComplemento())){
+            address.setComplemento(addressDetails.getComplemento());
         }
-        address.setCep(cep);
-        address.setNumero(numero);
+        if(addressDetails.getCep() != 0){
+            address.setCep(addressDetails.getCep());
+        }
+        if(addressDetails.getNumero() != 0){
+            address.setNumero(addressDetails.getNumero());
+        }
     }
 }

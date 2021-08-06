@@ -40,4 +40,8 @@ public class PetsController {
         petsService.deletePet(petId);
     }
 
+    @PatchMapping(path = "{petId}")
+    public void updatePet(@PathVariable("petId") Integer petId, @RequestBody Pets petDetails){
+      petsService.updatePet(petId,petDetails);
+    }
 }

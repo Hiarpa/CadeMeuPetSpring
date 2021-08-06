@@ -1,7 +1,10 @@
 package com.Grupo6.CadeMeuPet.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
@@ -121,6 +124,11 @@ public class UserApp {
                 pet.setPorte(newPorte);
                 break;
         }
+    }
+
+    public void formatarData(){
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        setDataNasc(Date.valueOf(formatar.format(getDataNasc())));
     }
 
     public Integer getIdUser() {

@@ -1,5 +1,6 @@
 package com.Grupo6.CadeMeuPet.controller;
 
+import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +41,8 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-    @PutMapping(path = "{userId}")
-    public void updateUser(
-            @PathVariable("userId") Integer userId,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) int telefone,
-            @RequestParam(required = false) String genero,
-            @RequestParam(required = false) java.sql.Date dataNasc) {
-        userService.updateUser(userId, email, telefone, genero , dataNasc );
+    @PatchMapping(path = "{userId}")
+    public void updateUser(@PathVariable("userId") Integer userId, @RequestBody UserApp userDetails){
+        userService.updateUser(userId,userDetails);
     }
 }

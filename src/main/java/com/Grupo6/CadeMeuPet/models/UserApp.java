@@ -27,7 +27,7 @@ public class UserApp {
     private String senha;
     @Column(name = "telefone")
     private int telefone;
-    @Column(name = "data_nascimento")
+    @Column(name = "data_nascimento") @DateTimeFormat(pattern = "dd/MM/yyyy")
     private java.sql.Date dataNasc;
     @Column(name = "genero")
     private String genero;
@@ -183,6 +183,9 @@ public class UserApp {
         this.genero = genero;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
 
 

@@ -31,8 +31,8 @@ public class PetsController {
     }
 
     @PostMapping
-    public void registerNewPet(@RequestBody Pets pet){
-        petsService.addNewPet(pet);
+    public void registerNewPet(@RequestBody Pets pet, @RequestParam Integer userId){
+        petsService.addNewPet(pet,userId);
     }
 
     @DeleteMapping(path = "{petId}")

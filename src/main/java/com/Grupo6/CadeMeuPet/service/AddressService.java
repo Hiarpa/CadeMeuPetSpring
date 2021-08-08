@@ -3,6 +3,7 @@ package com.Grupo6.CadeMeuPet.service;
 import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.repository.AddressRepository;
+import com.Grupo6.CadeMeuPet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,12 @@ import java.util.Optional;
 @Service
 public class AddressService {
     private final AddressRepository addressRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public AddressService(AddressRepository addressRepository){
+    public AddressService(AddressRepository addressRepository, UserRepository userRepository){
         this.addressRepository = addressRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Address> getAddress(){
@@ -28,11 +31,10 @@ public class AddressService {
         return addressRepository.findById(addressId);
     }
 
-    public void addNewAddress(Address address){
-        Address addressOptional = addressRepository.findAddressById(address.getIdAddress());
-//        if(addressOptional.isPresent()){
-//            throw new IllegalStateException("id already in use!!");
-//        }
+    public void addNewAddress(Address address, Integer userId){
+        UserApp user = userRepository.getById(userId);
+        user.setAddress(address);
+        address.setUser(user);
         addressRepository.save(address);
     }
 

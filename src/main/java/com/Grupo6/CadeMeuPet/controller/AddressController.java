@@ -30,10 +30,10 @@ public class AddressController {
         return addressService.getAddressById(addressId);
     }
 
-    //Colocar o userId como parametro
+
     @PostMapping
-    public void registerNewAddress(@RequestBody Address address){
-        addressService.addNewAddress(address);
+    public void registerNewAddress(@RequestBody Address address, @RequestParam Integer userId){
+        addressService.addNewAddress(address, userId);
     }
 
     @DeleteMapping(path = "{addressId}")

@@ -2,6 +2,7 @@ package com.Grupo6.CadeMeuPet.service;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.repository.PetsRepository;
+import com.Grupo6.CadeMeuPet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,12 @@ import java.util.Optional;
 @Service
 public class PetsService {
     private final PetsRepository petsRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public PetsService(PetsRepository petsRepository){
+    public PetsService(PetsRepository petsRepository, UserRepository userRepository){
         this.petsRepository = petsRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Pets> getPets(){
@@ -27,14 +30,9 @@ public class PetsService {
         return petsRepository.findById(petsId);
     }
 
-    //Colocar idUser
-    public void addNewPet(Pets pet){
-        Pets pets = petsRepository.findPetById(pet.getIdPets());
-//        if(pets.isPresent()){
-//            throw new IllegalStateException("id already in use!!");
-//        }
+    public void addNewPet(Pets pet,Integer userId){
+        pet.setUser(userRepository.getById(userId));
         petsRepository.save(pet);
-//      pet.setUser(userRepository.getUserById(userId);
     }
 
     public void deletePet(Integer petId){

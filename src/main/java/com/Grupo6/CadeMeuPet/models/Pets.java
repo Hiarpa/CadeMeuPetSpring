@@ -8,12 +8,12 @@ public class Pets  {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id_pet")
     private Integer idPets;
-    private String nome;
+    private String name;
     private String tipo_pet;
     private String imagem;
-    private String genero;
+    private String gender;
     private String status;
-    private String porte;
+    private String size;
     private String raca;
     private String especie;
     private String registro;
@@ -36,13 +36,13 @@ public class Pets  {
     public Pets() {
     }
 
-    public Pets(String nome, String tipo_pet, String imagem, String genero, String status, String porte, String raca, String especie, String registro, String cor, String pelagem, String descricao, String localP, String localA, Date dataA, Date dataP) {
-        this.nome = nome;
+    public Pets(String name, String tipo_pet, String imagem, String gender, String status, String size, String raca, String especie, String registro, String cor, String pelagem, String descricao, String localP, String localA, Date dataA, Date dataP) {
+        this.name = name;
         this.tipo_pet = tipo_pet;
         this.imagem = imagem;
-        this.genero = genero;
+        this.gender = gender;
         this.status = status;
-        this.porte = porte;
+        this.size = size;
         this.raca = raca;
         this.especie = especie;
         this.registro = registro;
@@ -55,14 +55,14 @@ public class Pets  {
         this.dataP = dataP;
     }
 
-    public Pets(Integer idPets, String nome, String tipo_pet, String imagem, String genero, String status, String porte, String raca, String especie, String registro, String cor, String pelagem, String descricao, String localP, String localA, Date dataA, Date dataP, UserApp user) {
+    public Pets(Integer idPets, String name, String tipo_pet, String imagem, String gender, String status, String size, String raca, String especie, String registro, String cor, String pelagem, String descricao, String localP, String localA, Date dataA, Date dataP, UserApp user) {
         this.idPets = idPets;
-        this.nome = nome;
+        this.name = name;
         this.tipo_pet = tipo_pet;
         this.imagem = imagem;
-        this.genero = genero;
+        this.gender = gender;
         this.status = status;
-        this.porte = porte;
+        this.size = size;
         this.raca = raca;
         this.especie = especie;
         this.registro = registro;
@@ -80,11 +80,11 @@ public class Pets  {
     public String toString() {
         return "Pets{" +
                 "idPets=" + idPets +
-                ", nome='" + nome + '\'' +
+                ", name='" + name + '\'' +
                 ", tipo_pet='" + tipo_pet + '\'' +
-                ", genero='" + genero + '\'' +
+                ", gender='" + gender + '\'' +
                 ", status='" + status + '\'' +
-                ", porte='" + porte + '\'' +
+                ", size='" + size + '\'' +
                 ", localP='" + localP + '\'' +
                 ", localA='" + localA + '\'' +
                 ", dataA=" + dataA +
@@ -131,24 +131,24 @@ public class Pets  {
         return idPets;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     public String getImagem() {
         return imagem;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getGender() {
+        return gender;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public String getPorte() {
-        return porte;
+    public String getSize() {
+        return size;
     }
 
     public String getLocalP() {
@@ -171,20 +171,20 @@ public class Pets  {
         return user;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setPorte(String porte) {
-        this.porte = porte;
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public void setStatus(String status) {

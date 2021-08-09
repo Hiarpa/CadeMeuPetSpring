@@ -17,20 +17,20 @@ public class UserApp {
     @Column(name = "id_user")
     private Integer idUser;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "name")
+    private String name;
     @Column(name = "cpf")
     private int cpf;
     @Column(name = "email")
     private String email;
-    @Column(name = "senha")
-    private String senha;
-    @Column(name = "telefone")
-    private int telefone;
-    @Column(name = "data_nascimento") @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private java.sql.Date dataNasc;
-    @Column(name = "genero")
-    private String genero;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "telephone")
+    private int telephone;
+    @Column(name = "birth_date") @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private java.sql.Date birthDate;
+    @Column(name = "gender")
+    private String gender;
 
     @OneToMany(mappedBy = "user")
     private List<Pets> listPets;
@@ -38,38 +38,41 @@ public class UserApp {
     @OneToOne(mappedBy = "user")
     private Address address;
 
+    //@ManyToMany
+    //private Occurrences occurrences;
+
     public UserApp() {
     }
 
-    public UserApp(Integer idUser, String nome, int cpf, String email, String senha, int telefone, java.sql.Date dataNasc, String genero) {
+    public UserApp(Integer idUser, String name, int cpf, String email, String password, int telephone, java.sql.Date birthDate, String gender) {
         this.idUser = idUser;
-        this.nome = nome;
+        this.name = name;
         this.cpf = cpf;
         this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.dataNasc = dataNasc;
-        this.genero = genero;
+        this.password = password;
+        this.telephone = telephone;
+        this.birthDate = birthDate;
+        this.gender = gender;
     }
 
-    public UserApp(String nome, int cpf, String email, String senha, int telefone, Date dataNasc, String genero) {
-        this.nome = nome;
+    public UserApp(String name, int cpf, String email, String password, int telephone, Date birthDate, String gender) {
+        this.name = name;
         this.cpf = cpf;
         this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.dataNasc = dataNasc;
-        this.genero = genero;
+        this.password = password;
+        this.telephone = telephone;
+        this.birthDate = birthDate;
+        this.gender = gender;
     }
 
-    public UserApp(String nome, int cpf, String email, String senha, int telefone, Date dataNasc, String genero, List<Pets> listPets, Address address) {
-        this.nome = nome;
+    public UserApp(String name, int cpf, String email, String password, int telephone, Date birthDate, String gender, List<Pets> listPets, Address address) {
+        this.name = name;
         this.cpf = cpf;
         this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.dataNasc = dataNasc;
-        this.genero = genero;
+        this.password = password;
+        this.telephone = telephone;
+        this.birthDate = birthDate;
+        this.gender = gender;
         this.listPets = listPets;
         this.address = address;
     }
@@ -85,7 +88,7 @@ public class UserApp {
 //    public void verListaPets(){
 //        for(Pets valor: listPets){
 //            for(int i = 1; i < listPets.size(); i++){
-//                System.out.println("Nome: " + valor.getNome() + "\n"+
+//                System.out.println("Name: " + valor.getName() + "\n"+
 //                        "Tipo: " + valor.getTipo() + "\n" +
 //                        "Genêro: " + valor.getGenero() + "\n" +
 //                        "Status: " + valor.getStatus() + "\n" +
@@ -102,41 +105,42 @@ public class UserApp {
     public void alterPet(Pets pet){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("O que você deseja alterar ? ");
-        System.out.println("1-Nome");
-        System.out.println("2-Gênero");
-        System.out.println("3-Porte");
+        System.out.println("Select a attribute to modify: ");
+        System.out.println("1-Name");
+        System.out.println("2-Gender");
+        System.out.println("3-Size");
         int opcao = scanner.nextInt();
         switch (opcao){
             case 1:
-                System.out.println("O nome atual do pet é " + pet.getNome() + ". Deseja alterar para qual ?");
+                System.out.println("Current name is: " + pet.getName() + ". Wanna change to ?");
                 String newName = scanner.next();
-                pet.setNome(newName);
+                pet.setName(newName);
                 break;
             case 2:
-                System.out.println("O gênero atual do pet é " + pet.getGenero() + ". Deseja alterar para qual ?");
-                String newGaddresser = scanner.next();
-                pet.setGenero(newGaddresser);
+                System.out.println("Current gender is: " + pet.getGender() + ". Wanna change to ?");
+                String newGender = scanner.next();
+                pet.setGender(newGender);
                 break;
             case 3:
-                System.out.println("O porte atual do pet é " + pet.getPorte() + ". Deseja alterar para qual ?");
-                String newPorte = scanner.next();
-                pet.setPorte(newPorte);
+                System.out.println("Current size is: " + pet.getSize() + ". Wanna change to ?");
+                String newSize = scanner.next();
+                pet.setSize(newSize);
                 break;
         }
     }
 
     public void formatarData(){
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
-        setDataNasc(Date.valueOf(formatar.format(getDataNasc())));
+        setBirthDate(Date.valueOf(formatar.format(getBirthDate()
+        )));
     }
 
     public Integer getIdUser() {
         return idUser;
     }
 
-    public String getNome() {
-        return this.nome;
+    public String getName() {
+        return this.name;
     }
 
     public int getCpf() {
@@ -147,20 +151,20 @@ public class UserApp {
         return email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public int getTelefone() {
-        return telefone;
+    public int getTelephone() {
+        return telephone;
     }
 
-    public java.sql.Date getDataNasc() {
-        return dataNasc;
+    public java.sql.Date getBirthDate() {
+        return birthDate;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getGender() {
+        return gender;
     }
 
     public Address getAddress() {
@@ -171,16 +175,16 @@ public class UserApp {
         this.email = email;
     }
 
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
+    public void setTelephone(int telephone) {
+        this.telephone = telephone;
     }
 
-    public void setDataNasc(java.sql.Date dataNasc) {
-        this.dataNasc = dataNasc;
+    public void setBirthDate(java.sql.Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setAddress(Address address) {

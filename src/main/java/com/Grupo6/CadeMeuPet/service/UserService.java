@@ -1,6 +1,5 @@
 package com.Grupo6.CadeMeuPet.service;
 
-import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +52,14 @@ public class UserService {
         if (userDetails.getEmail() != null && userDetails.getEmail().length() > 0 && !Objects.equals(user.getEmail(), userDetails.getEmail())){
             user.setEmail(userDetails.getEmail());
         }
-        if (userDetails.getGenero() != null && userDetails.getGenero().length() > 0 && !Objects.equals(user.getGenero(), userDetails.getGenero())){
-            user.setGenero(userDetails.getGenero());
+        if (userDetails.getGender() != null && userDetails.getGender().length() > 0 && !Objects.equals(user.getGender(), userDetails.getGender())){
+            user.setGender(userDetails.getGender());
         }
-        if(userDetails.getTelefone() != 0){
-            user.setTelefone(userDetails.getTelefone());
+        if(userDetails.getTelephone() != 0){
+            user.setTelephone(userDetails.getTelephone());
         }
-        if(userDetails.getDataNasc() != null && userDetails.getGenero().length() > 0){
-            user.setDataNasc(userDetails.getDataNasc());
+        if(userDetails.getBirthDate() != null && userDetails.getGender().length() > 0){
+            user.setBirthDate(userDetails.getBirthDate());
         }
     }
 }

@@ -47,16 +47,16 @@ public class PetsService {
     public void updatePet(Integer petId, Pets petDetails){
         Pets pet = petsRepository.findPetById(petId);
 
-        if (petDetails.getNome() != null && petDetails.getNome().length() > 0 && !Objects.equals(pet.getNome(), petDetails.getNome())){
-            pet.setNome(petDetails.getNome());
+        if (petDetails.getName() != null && petDetails.getName().length() > 0 && !Objects.equals(pet.getName(), petDetails.getName())){
+            pet.setName(petDetails.getName());
         }
 
         if (petDetails.getTipo_pet() != null && petDetails.getTipo_pet().length() > 0 && !Objects.equals(pet.getTipo_pet(),petDetails.getTipo_pet())){
             pet.setTipo_pet(petDetails.getTipo_pet());
         }
 
-        if (petDetails.getGenero() != null && petDetails.getGenero().length() > 0 && !Objects.equals(pet.getGenero(),petDetails.getGenero())){
-            pet.setGenero(pet.getGenero());
+        if (petDetails.getGender() != null && petDetails.getGender().length() > 0 && !Objects.equals(pet.getGender(),petDetails.getGender())){
+            pet.setGender(pet.getGender());
         }
 
     }

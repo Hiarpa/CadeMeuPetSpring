@@ -3,7 +3,6 @@ package com.Grupo6.CadeMeuPet.controller;
 import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

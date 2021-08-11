@@ -35,11 +35,15 @@ public class UserApp {
     @OneToMany(mappedBy = "user")
     private List<Pets> listPets;
 
-    @OneToOne(mappedBy = "user")
-    private Address address;
+//    @ManyToMany
+//    private Occurrences occurrences;
 
-    //@ManyToMany
-    //private Occurrences occurrences;
+    @OneToMany(mappedBy = "sender")
+    private List<Communication> casesSender;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Communication> casesReceiver;
+
 
     public UserApp() {
     }
@@ -65,7 +69,8 @@ public class UserApp {
         this.gender = gender;
     }
 
-    public UserApp(String name, int cpf, String email, String password, int telephone, Date birthDate, String gender, List<Pets> listPets, Address address) {
+    public UserApp(Integer idUser, String name, int cpf, String email, String password, int telephone, Date birthDate, String gender, List<Pets> listPets, List<Communication> casesSender, List<Communication> casesReceiver) {
+        this.idUser = idUser;
         this.name = name;
         this.cpf = cpf;
         this.email = email;
@@ -74,7 +79,8 @@ public class UserApp {
         this.birthDate = birthDate;
         this.gender = gender;
         this.listPets = listPets;
-        this.address = address;
+        this.casesSender = casesSender;
+        this.casesReceiver = casesReceiver;
     }
 
     public void addPet(Pets pet){
@@ -155,6 +161,10 @@ public class UserApp {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getTelephone() {
         return telephone;
     }
@@ -165,10 +175,6 @@ public class UserApp {
 
     public String getGender() {
         return gender;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     public void setEmail(String email) {
@@ -187,9 +193,6 @@ public class UserApp {
         this.gender = gender;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
 
 

@@ -1,10 +1,9 @@
 package com.Grupo6.CadeMeuPet.controller;
 
-import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +13,11 @@ import java.util.Optional;
 @RequestMapping(path = "api/user")
 public class UserController {
 
+    @Autowired
     private final UserService userService;
+
+    @Autowired
+    PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private UserController(UserService userService) {
@@ -33,6 +36,7 @@ public class UserController {
 
     @PostMapping
     public void registerNewUser(@RequestBody UserApp user){
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.addNewUser(user);
     }
 

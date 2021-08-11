@@ -33,7 +33,6 @@ public class AddressService {
 
     public void addNewAddress(Address address, Integer userId){
         UserApp user = userRepository.getById(userId);
-        user.setAddress(address);
         address.setUser(user);
         addressRepository.save(address);
     }

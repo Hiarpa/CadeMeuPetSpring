@@ -21,15 +21,6 @@ import static com.Grupo6.CadeMeuPet.security.SecurityConstants.SIGN_UP_URL;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private ApplicationUserDetailsService userDetailsService;
-//
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
-//
-//    public SecurityConfig(BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()

@@ -1,8 +1,15 @@
 package com.Grupo6.CadeMeuPet.security;
 
 public class SecurityConstants {
-    public static final String SIGN_UP_URL = "/user/record";
-    public static final String KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+    public static final String SIGN_UP_URL = "/api/user";
+    public static final String[] AUTH_LIST = {
+            // -- swagger ui
+            "**/swagger-resources/**",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/api/**"
+    };
+    public static final String KEY= "q3t6w9z$C&F)J@NcQfTjWnZr4u7x!A%D*G-KaPdSgUkXp2s5v8y/B?E(H+MbQeTh";
     public static final String HEADER_NAME = "Authorization";
     public static final Long EXPIRATION_TIME = 1000L * 60 * 30;
 }

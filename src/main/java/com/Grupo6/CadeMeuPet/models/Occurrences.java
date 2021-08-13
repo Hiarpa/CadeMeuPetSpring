@@ -12,23 +12,23 @@ public class Occurrences {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "occurrences_pet")
     private Integer id;
-    private String foundBy;
-    private String lostBy;
     private Date data_found;
     private Date data_lost;
     private String pets;
     private String lost_place;
     private String found_place;
 
-    @JoinColumn(name = "fk_id_user")
-    private UserApp user;
+    @JoinColumn(name = "fk_id_found_by")
+    private UserApp user_found_by;
+
+    @JoinColumn(name = "fk_id_lost_by")
+    private UserApp user_lost_by;
 
     public Occurrences() {
     }
 
-    public Occurrences(String foundBy, String lostBy, Date data_found, Date data_lost, String pets, String lost_place, String found_place) {
-        this.foundBy = foundBy;
-        this.lostBy = lostBy;
+    public Occurrences(Date data_found, Date data_lost, String pets, String lost_place, String found_place) {
+
         this.data_found = data_found;
         this.data_lost = data_lost;
 //        this.pets = pets;
@@ -36,42 +36,36 @@ public class Occurrences {
         this.found_place = found_place;
     }
 
-    public Occurrences(Integer id, String foundBy, String lostBy, Date data_found, Date data_lost, String pets, String lost_place, String found_place, String user) {
+    public Occurrences(Integer id, Date data_found, Date data_lost, String lost_place, String found_place, UserApp user_found_by) {
         this.id = id;
-        this.foundBy = foundBy;
-        this.lostBy = lostBy;
         this.data_found = data_found;
         this.data_lost = data_lost;
-//        this.pets = pets;
         this.lost_place = lost_place;
         this.found_place = found_place;
-//        this.user = user;
+        this.user_found_by = user_found_by;
     }
 
-
-
+    public Occurrences(Integer id, Date data_found, Date data_lost, String lost_place, String found_place, UserApp user_lost_by) {
+        this.id = id;
+        this.data_found = data_found;
+        this.data_lost = data_lost;
+        this.lost_place = lost_place;
+        this.found_place = found_place;
+        this.user_lost_by = user_lost_by;
+    }
 
     public Integer getUserId() {
         return id;
-    }
-
-    public String getFoundBy() {
-        return foundBy;
-    }
-
-    public String getLostBy() {
-        return lostBy;
     }
 
     public Date getFoundDate() {
         return data_found;
     }
 
-    public Date getLostDAte() {
+    public Date getLostDate() {
         return data_lost;
     }
 
-//    public Pets getPets() { return pets; }
 
     public String getLost_place() {
         return lost_place;
@@ -81,7 +75,7 @@ public class Occurrences {
         return found_place;
     }
 
-    public void setUser(UserApp user) {
-        this.user = user;
-    }
+//    public void setUser(UserApp user) {
+//        this.user = user;
+//    }
 }

@@ -27,7 +27,7 @@ public class UserApp {
     private String password;
     @Column(name = "telephone")
     private int telephone;
-    @Column(name = "birth_date") @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "birth_date")
     private java.sql.Date birthDate;
     @Column(name = "gender")
     private String gender;
@@ -38,8 +38,8 @@ public class UserApp {
     @OneToOne(mappedBy = "user")
     private Address address;
 
-    //@ManyToMany
-    //private Occurrences occurrences;
+//    @ManyToMany
+//    private Occurrences occurrences;
 
     public UserApp() {
     }

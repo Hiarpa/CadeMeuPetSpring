@@ -1,6 +1,7 @@
 package com.Grupo6.CadeMeuPet.controller;
 
 import com.Grupo6.CadeMeuPet.models.Communication;
+import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.service.CommunicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,5 +34,15 @@ public class CommunicationController {
                                          @RequestParam Integer receiverId,
                                          @RequestParam Integer senderId){
         communicationService.addNewCommunication(communication, receiverId, senderId);
+    }
+
+    @DeleteMapping(path = "{communicationId}")
+    public void deleteCommunication(@PathVariable("communicationId") Integer communicationId){
+        communicationService.deleteCommunication(communicationId);
+    }
+
+    @PatchMapping(path = "{communicationId}")
+    public void updateCommunication(@PathVariable("communicationId") Integer communicationId, @RequestBody Communication communicationDetails){
+        communicationService.updateCommunication(communicationId, communicationDetails);
     }
 }

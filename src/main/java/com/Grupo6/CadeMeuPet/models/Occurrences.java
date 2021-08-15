@@ -22,9 +22,11 @@ public class Occurrences {
     @JoinColumn(name = "fk_id_pet")
     private Pets pet;
 
+    @ManyToOne
     @JoinColumn(name = "fk_id_found_by")
     private UserApp user_found_by;
 
+    @ManyToOne
     @JoinColumn(name = "fk_id_lost_by")
     private UserApp user_lost_by;
 

@@ -29,8 +29,8 @@ public class OccurrencesController {
     }
 
     @PostMapping
-    public void registerNewOccurrences(@RequestBody Occurrences occurrences, @RequestParam Integer lostByUserID){
-        occurrencesService.addNewOccurrences(occurrences, lostByUserID);
+    public void registerNewOccurrences(@RequestBody Occurrences occurrences, @RequestParam Integer userId, @RequestParam Integer petId){
+        occurrencesService.addNewOccurrences(occurrences, userId, petId);
     }
 
     @DeleteMapping(path = "{occurrencesId}")

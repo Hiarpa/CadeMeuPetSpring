@@ -64,11 +64,11 @@ public class OccurrencesService {
         if (occurrencesDetails.getLost_place() != null && occurrencesDetails.getLost_place().length() > 0 && !Objects.equals(occurrences.getLost_place(), occurrencesDetails.getLost_place())){
             occurrences.setFound_place(occurrencesDetails.getLost_place());
         }
-        if(occurrencesDetails.getData_lost() != null ){
-            occurrences.setData_lost(occurrencesDetails.getData_lost());
+        if(occurrencesDetails.getDate_lost() != null ){
+            occurrences.setDate_lost(occurrencesDetails.getDate_lost());
         }
-        if(occurrencesDetails.getData_found() != null ){
-            occurrences.setData_found(occurrencesDetails.getData_found());
+        if(occurrencesDetails.getDate_found() != null ){
+            occurrences.setDate_found(occurrencesDetails.getDate_found());
         }
     }
 }

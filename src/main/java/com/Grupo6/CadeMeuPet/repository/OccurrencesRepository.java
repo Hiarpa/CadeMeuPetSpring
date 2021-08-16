@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public  interface OccurrencesRepository extends  JpaRepository<Occurrences, Integer> {
+public  interface OccurrencesRepository extends JpaRepository<Occurrences, Integer> {
 
     @Query("SELECT s FROM Occurrences s WHERE s.id= ?1")
     Occurrences findOccurrencesById(Integer occurrencesId);

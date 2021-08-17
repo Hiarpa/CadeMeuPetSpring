@@ -7,27 +7,18 @@ import java.sql.Date;
 public class Pets  {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id_pet")
-    private Integer idPets;
+    private Integer idPet;
     private String name;
-    private String tipo_pet;
-    private String imagem;
+    private String typePet;
+    private String image;
     private String gender;
-    private String status;
     private String size;
-    private String raca;
-    private String especie;
-    private String registro;
-    private String cor;
-    private String pelagem;
-    private String descricao;
-    @Column(name = "local_p")
-    private String localP;
-    @Column(name = "local_a")
-    private String localA;
-    @Column(name = "data_a")
-    private java.sql.Date dataA;
-    @Column(name = "data_p")
-    private java.sql.Date dataP;
+    private String breed;
+    private String species;
+    private String register;
+    private String color;
+    private String coat;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_user")
@@ -36,135 +27,100 @@ public class Pets  {
     public Pets() {
     }
 
-    public Pets(String name, String tipo_pet, String imagem, String gender, String status, String size, String raca, String especie, String registro, String cor, String pelagem, String descricao, String localP, String localA, Date dataA, Date dataP) {
+    public Pets(String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String coat, String description) {
         this.name = name;
-        this.tipo_pet = tipo_pet;
-        this.imagem = imagem;
+        this.typePet = typePet;
+        this.image = image;
         this.gender = gender;
-        this.status = status;
         this.size = size;
-        this.raca = raca;
-        this.especie = especie;
-        this.registro = registro;
-        this.cor = cor;
-        this.pelagem = pelagem;
-        this.descricao = descricao;
-        this.localP = localP;
-        this.localA = localA;
-        this.dataA = dataA;
-        this.dataP = dataP;
+        this.breed = breed;
+        this.species = species;
+        this.register = register;
+        this.color = color;
+        this.coat = coat;
+        this.description = description;
     }
 
-    public Pets(Integer idPets, String name, String tipo_pet, String imagem, String gender, String status, String size, String raca, String especie, String registro, String cor, String pelagem, String descricao, String localP, String localA, Date dataA, Date dataP, UserApp user) {
-        this.idPets = idPets;
+    public Pets(Integer idPet, String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String coat, String description, UserApp user) {
+        this.idPet = idPet;
         this.name = name;
-        this.tipo_pet = tipo_pet;
-        this.imagem = imagem;
+        this.typePet = typePet;
+        this.image = image;
         this.gender = gender;
-        this.status = status;
         this.size = size;
-        this.raca = raca;
-        this.especie = especie;
-        this.registro = registro;
-        this.cor = cor;
-        this.pelagem = pelagem;
-        this.descricao = descricao;
-        this.localP = localP;
-        this.localA = localA;
-        this.dataA = dataA;
-        this.dataP = dataP;
+        this.breed = breed;
+        this.species = species;
+        this.register = register;
+        this.color = color;
+        this.coat = coat;
+        this.description = description;
         this.user = user;
     }
 
     @Override
     public String toString() {
         return "Pets{" +
-                "idPets=" + idPets +
+                "idPets=" + idPet +
                 ", name='" + name + '\'' +
-                ", tipo_pet='" + tipo_pet + '\'' +
+                ", tipo_pet='" + typePet + '\'' +
                 ", gender='" + gender + '\'' +
-                ", status='" + status + '\'' +
                 ", size='" + size + '\'' +
-                ", localP='" + localP + '\'' +
-                ", localA='" + localA + '\'' +
-                ", dataA=" + dataA +
-                ", dataP=" + dataP +
                 '}';
     }
 
-    public void verificar_status(){
-        System.out.println("Status do pet: " + getStatus());
-        System.out.println("Local perdido: " + getLocalP());
-        System.out.println("Local achado: " + getLocalA());
-        return;
+//    public void verificar_status(){
+//        System.out.println("Encontrado por: " + user.occurences.getFoundBy());
+//        System.out.println("Perdido por: " + user.occurences.getFoundBy());
+//        System.out.println("Data em que foi encontrado: " + user.occurences.getDateFound());
+//        return;
+//    }
+
+    public String getTypePet() {
+        return typePet;
     }
 
-    public String getTipo_pet() {
-        return tipo_pet;
+    public String getBreed() {
+        return breed;
     }
 
-    public String getRaca() {
-        return raca;
+    public String getSpecies() {
+        return species;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getRegister() {
+        return register;
     }
 
-    public String getRegistro() {
-        return registro;
+    public String getColor() {
+        return color;
     }
 
-    public String getCor() {
-        return cor;
+    public String getCoat() {
+        return coat;
     }
 
-    public String getPelagem() {
-        return pelagem;
+    public String getDescription() {
+        return description;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public Integer getIdPets() {
-        return idPets;
+    public Integer getIdPet() {
+        return idPet;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getImagem() {
-        return imagem;
+    public String getImage() {
+        return image;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public String getSize() {
         return size;
-    }
-
-    public String getLocalP() {
-        return localP;
-    }
-
-    public String getLocalA() {
-        return localA;
-    }
-
-    public java.sql.Date getDataA() {
-        return dataA;
-    }
-
-    public java.sql.Date getDataP() {
-        return dataP;
     }
 
     public UserApp getUser() {
@@ -175,8 +131,8 @@ public class Pets  {
         this.name = name;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setGender(String gender) {
@@ -187,56 +143,36 @@ public class Pets  {
         this.size = size;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setLocalP(String localP) {
-        this.localP = localP;
-    }
-
-    public void setLocalA(String localA) {
-        this.localA = localA;
-    }
-
     public void setUser(UserApp user) {
         this.user = user;
     }
 
-    public void setTipo_pet(String tipo_pet) {
-        this.tipo_pet = tipo_pet;
+    public void setTypePet(String typePet) {
+        this.typePet = typePet;
     }
 
-    public void setRaca(String raca) {
-        this.raca = raca;
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setSpecies(String species) {
+        this.species = species;
     }
 
-    public void setRegistro(String registro) {
-        this.registro = registro;
+    public void setRegister(String register) {
+        this.register = register;
     }
 
-    public void setCor(String cor) {
-        this.cor = cor;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public void setPelagem(String pelagem) {
-        this.pelagem = pelagem;
+    public void setCoat(String coat) {
+        this.coat = coat;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setDataA(Date dataA) {
-        this.dataA = dataA;
-    }
-
-    public void setDataP(Date dataP) {
-        this.dataP = dataP;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

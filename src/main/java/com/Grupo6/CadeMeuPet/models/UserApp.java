@@ -27,19 +27,10 @@ public class UserApp {
     private String password;
     @Column(name = "telephone")
     private int telephone;
-    @Column(name = "birth_date") @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "birth_date")
     private java.sql.Date birthDate;
     @Column(name = "gender")
     private String gender;
-
-    @OneToMany(mappedBy = "user")
-    private List<Pets> listPets;
-
-    @OneToOne(mappedBy = "user")
-    private Address address;
-
-    //@ManyToMany
-    //private Occurrences occurrences;
 
     public UserApp() {
     }
@@ -65,25 +56,14 @@ public class UserApp {
         this.gender = gender;
     }
 
-    public UserApp(String name, int cpf, String email, String password, int telephone, Date birthDate, String gender, List<Pets> listPets, Address address) {
-        this.name = name;
-        this.cpf = cpf;
-        this.email = email;
-        this.password = password;
-        this.telephone = telephone;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.listPets = listPets;
-        this.address = address;
-    }
 
-    public void addPet(Pets pet){
-        listPets.add(pet);
-    }
-
-    public void deletePet(int id){
-        listPets.remove(id);
-    }
+//    public void addPet(Pets pet){
+//        listPets.add(pet);
+//    }
+//
+//    public void deletePet(int id){
+//        listPets.remove(id);
+//    }
 
 //    public void verListaPets(){
 //        for(Pets valor: listPets){
@@ -155,6 +135,10 @@ public class UserApp {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getTelephone() {
         return telephone;
     }
@@ -165,10 +149,6 @@ public class UserApp {
 
     public String getGender() {
         return gender;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     public void setEmail(String email) {
@@ -187,9 +167,6 @@ public class UserApp {
         this.gender = gender;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
 
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,8 +21,6 @@ public class UserService {
     }
 
     public List<UserApp> getUsers(){
-//        UserApp user = userRepository.getById(1);
-//        user.formatarData();
         return userRepository.findAll();
     }
 
@@ -30,10 +29,10 @@ public class UserService {
     }
 
     public void addNewUser(UserApp user){
-        Optional<UserApp> userAppOptional = userRepository.findUserByEmail(user.getEmail());
-        if(userAppOptional.isPresent()){
-            throw new IllegalStateException("email already in use!!");
-        }
+//        Optional<UserApp> userAppOptional = userRepository.findUserByEmail(user.getEmail());
+//        if(userAppOptional.isPresent()){
+//            throw new IllegalStateException("email already in use!!");
+//        }
         userRepository.save(user);
     }
 
@@ -58,7 +57,7 @@ public class UserService {
         if(userDetails.getTelephone() != 0){
             user.setTelephone(userDetails.getTelephone());
         }
-        if(userDetails.getBirthDate() != null && userDetails.getGender().length() > 0){
+        if(userDetails.getBirthDate() != null ){
             user.setBirthDate(userDetails.getBirthDate());
         }
     }

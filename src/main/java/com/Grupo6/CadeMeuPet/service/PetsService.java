@@ -51,8 +51,8 @@ public class PetsService {
             pet.setName(petDetails.getName());
         }
 
-        if (petDetails.getTipo_pet() != null && petDetails.getTipo_pet().length() > 0 && !Objects.equals(pet.getTipo_pet(),petDetails.getTipo_pet())){
-            pet.setTipo_pet(petDetails.getTipo_pet());
+        if (petDetails.getTypePet() != null && petDetails.getTypePet().length() > 0 && !Objects.equals(pet.getTypePet(),petDetails.getTypePet())){
+            pet.setTypePet(petDetails.getTypePet());
         }
 
         if (petDetails.getGender() != null && petDetails.getGender().length() > 0 && !Objects.equals(pet.getGender(),petDetails.getGender())){

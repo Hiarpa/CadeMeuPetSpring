@@ -49,20 +49,20 @@ public class AddressService {
     public void updateAddress(Integer addressId, Address addressDetails){
         Address address = addressRepository.findAddressById(addressId);
 
-        if (addressDetails.getRua() != null && addressDetails.getRua().length() > 0 && !Objects.equals(address.getRua(), addressDetails.getRua())){
-            address.setRua(addressDetails.getRua());
+        if (addressDetails.getRoad() != null && addressDetails.getRoad().length() > 0 && !Objects.equals(address.getRoad(), addressDetails.getRoad())){
+            address.setRoad(addressDetails.getRoad());
         }
-        if (addressDetails.getEstado() != null && addressDetails.getEstado().length() > 0 && !Objects.equals(address.getEstado(), addressDetails.getEstado())){
-            address.setEstado(addressDetails.getEstado());
+        if (addressDetails.getState() != null && addressDetails.getState().length() > 0 && !Objects.equals(address.getState(), addressDetails.getState())){
+            address.setState(addressDetails.getState());
         }
-        if (addressDetails.getComplemento() != null && addressDetails.getComplemento().length() > 0 && !Objects.equals(address.getComplemento(), addressDetails.getComplemento())){
-            address.setComplemento(addressDetails.getComplemento());
+        if (addressDetails.getComplement() != null && addressDetails.getComplement().length() > 0 && !Objects.equals(address.getComplement(), addressDetails.getComplement())){
+            address.setComplement(addressDetails.getComplement());
         }
         if(addressDetails.getCep() != 0){
             address.setCep(addressDetails.getCep());
         }
-        if(addressDetails.getNumero() != 0){
-            address.setNumero(addressDetails.getNumero());
+        if(addressDetails.getNumber() != 0){
+            address.setNumber(addressDetails.getNumber());
         }
     }
 }

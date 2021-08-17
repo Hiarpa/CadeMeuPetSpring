@@ -27,23 +27,10 @@ public class UserApp {
     private String password;
     @Column(name = "telephone")
     private int telephone;
-    @Column(name = "birth_date") @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "birth_date")
     private java.sql.Date birthDate;
     @Column(name = "gender")
     private String gender;
-
-    @OneToMany(mappedBy = "user")
-    private List<Pets> listPets;
-
-//    @ManyToMany
-//    private Occurrences occurrences;
-
-    @OneToMany(mappedBy = "sender")
-    private List<Communication> casesSender;
-
-    @OneToMany(mappedBy = "receiver")
-    private List<Communication> casesReceiver;
-
 
     public UserApp() {
     }
@@ -69,27 +56,14 @@ public class UserApp {
         this.gender = gender;
     }
 
-    public UserApp(Integer idUser, String name, int cpf, String email, String password, int telephone, Date birthDate, String gender, List<Pets> listPets, List<Communication> casesSender, List<Communication> casesReceiver) {
-        this.idUser = idUser;
-        this.name = name;
-        this.cpf = cpf;
-        this.email = email;
-        this.password = password;
-        this.telephone = telephone;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.listPets = listPets;
-        this.casesSender = casesSender;
-        this.casesReceiver = casesReceiver;
-    }
 
-    public void addPet(Pets pet){
-        listPets.add(pet);
-    }
-
-    public void deletePet(int id){
-        listPets.remove(id);
-    }
+//    public void addPet(Pets pet){
+//        listPets.add(pet);
+//    }
+//
+//    public void deletePet(int id){
+//        listPets.remove(id);
+//    }
 
 //    public void verListaPets(){
 //        for(Pets valor: listPets){

@@ -5,43 +5,44 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address")
 public class Address {
+
     @Id
     @SequenceGenerator(name = "address_sequence", sequenceName = "address_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
     private Integer idAddress;
     private int cep;
-    private String rua;
-    private int numero;
-    private String complemento;
-    private String estado;
+    private String road;
+    private int number;
+    private String complement;
+    private String state;
 
     @OneToOne
     @JoinColumn(name = "fk_id_user")
     private UserApp user;
 
-    public Address(int cep, String rua, int numero, String complemento, String estado, UserApp user) {
+    public Address(int cep, String road, int number, String complement, String state, UserApp user) {
         this.cep = cep;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.estado = estado;
+        this.road = road;
+        this.number = number;
+        this.complement = complement;
+        this.state = state;
         this.user = user;
     }
-    public Address(int cep, String rua, int numero, String complemento, String estado) {
+    public Address(int cep, String road, int number, String complement, String state) {
         this.cep = cep;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.estado = estado;
+        this.road = road;
+        this.number = number;
+        this.complement = complement;
+        this.state = state;
     }
 
-    public Address(Integer idAddress, int cep, String rua, int numero, String complemento, String estado, UserApp user) {
+    public Address(Integer idAddress, int cep, String road, int number, String complement, String state, UserApp user) {
         this.idAddress = idAddress;
         this.cep = cep;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.estado = estado;
+        this.road = road;
+        this.number = number;
+        this.complement = complement;
+        this.state = state;
         this.user = user;
     }
 
@@ -52,28 +53,30 @@ public class Address {
         return idAddress;
     }
 
+    public void setIdAddress(Integer idAddress) { this.idAddress = idAddress; }
+
+    public String getRoad() { return road; }
+
+    public void setRoad(String road) { this.road = road; }
+
+    public int getNumber() { return number; }
+
+    public void setNumber(int number) { this.number = number; }
+
+    public String getComplement() { return complement; }
+
+    public void setComplement(String complement) { this.complement = complement; }
+
+    public String getState() { return state; }
+
+    public void setState(String state) { this.state = state; }
+
     public int getCep() {
         return cep;
     }
 
-    public String getRua() {
-        return rua;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
+    public void setCep(int cep) {
+        this.cep = cep;
     }
 
     public UserApp getUser() {
@@ -84,20 +87,8 @@ public class Address {
         this.user = user;
     }
 
-    public void setCep(int cep) {
-        this.cep = cep;
-    }
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }
 

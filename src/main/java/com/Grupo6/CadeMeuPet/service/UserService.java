@@ -21,8 +21,6 @@ public class UserService {
     }
 
     public List<UserApp> getUsers(){
-//        UserApp user = userRepository.getById(1);
-//        user.formatarData();
         return userRepository.findAll();
     }
 
@@ -31,10 +29,10 @@ public class UserService {
     }
 
     public void addNewUser(UserApp user){
-        Optional<UserApp> userAppOptional = userRepository.findUserByEmail(user.getEmail());
-        if(userAppOptional.isPresent()){
-            throw new IllegalStateException("email already in use!!");
-        }
+//        Optional<UserApp> userAppOptional = userRepository.findUserByEmail(user.getEmail());
+//        if(userAppOptional.isPresent()){
+//            throw new IllegalStateException("email already in use!!");
+//        }
         userRepository.save(user);
     }
 

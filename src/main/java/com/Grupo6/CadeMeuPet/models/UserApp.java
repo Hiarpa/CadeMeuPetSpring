@@ -32,15 +32,6 @@ public class UserApp {
     @Column(name = "gender")
     private String gender;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Pets> listPets;
-
-//    @OneToOne(mappedBy = "user")
-//    private Address address;
-
-//    @ManyToMany
-//    private Occurrences occurrences;
-
     public UserApp() {
     }
 
@@ -144,6 +135,10 @@ public class UserApp {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getTelephone() {
         return telephone;
     }
@@ -155,10 +150,6 @@ public class UserApp {
     public String getGender() {
         return gender;
     }
-
-//    public Address getAddress() {
-//        return address;
-//    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -176,9 +167,6 @@ public class UserApp {
         this.gender = gender;
     }
 
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
 }
 
 

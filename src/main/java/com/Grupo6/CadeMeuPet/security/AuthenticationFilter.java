@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import static com.Grupo6.CadeMeuPet.security.SecurityConstants.EXPIRATION_TIME;
 import static com.Grupo6.CadeMeuPet.security.SecurityConstants.KEY;
@@ -32,12 +33,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         this.authenticationManager = manager;
     }
 
-    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) {
+    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
         try{
             UserApp user = new ObjectMapper().readValue(req.getInputStream(), UserApp.class);
+
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getEmail(),
-                            user.getPassword(), new ArrayList<>())
+                            user.getPassword())
             );
 
         }catch (IOException e){

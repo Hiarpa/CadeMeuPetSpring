@@ -1,11 +1,10 @@
-package com.Grupo6.CadeMeuPet.controller;
+package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.service.PetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 

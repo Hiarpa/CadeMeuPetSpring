@@ -1,7 +1,6 @@
-package com.Grupo6.CadeMeuPet.controller;
+package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Communication;
-import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.service.CommunicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

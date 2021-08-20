@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Objects;
@@ -72,5 +71,13 @@ public class OccurrencesService {
             occurrences.setDate_found(occurrencesDetails.getDate_found());
         }
     }
+
+//    public void attemptUpdateOccurrence(Occurrences occurrenceToBeUpdated, Integer userId){
+//        System.out.println("Qual é o seu pet ?");
+//        List<Occurrences> occurencesList = new ArrayList(occurrencesRepository.findOccurrenceByUserId(userId));
+//        for (Occurrences indice: occurencesList){
+//            System.out.println(petsRepository.findPetById(indice.getId()).getName() + " - " +  petsRepository.findPetById(indice.getId()).getBreed());
+//        }
+//    }
 }
 

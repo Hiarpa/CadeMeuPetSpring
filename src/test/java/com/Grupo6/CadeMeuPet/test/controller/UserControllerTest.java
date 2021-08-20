@@ -35,7 +35,7 @@ public class UserControllerTest {
 
     @Test
     public void callingUserByWrongIdShouldReturnNotFound() throws Exception{
-        Optional<UserApp> userTest = Optional.of(new UserApp(3,"Jhonantan",69473234,"jhon.caet@gmail.com","123praia",9648216,new Date(1999-05-20),"Masculino"));
+        Optional<UserApp> userTest = Optional.of(new UserApp(3,"Jhonatan",69473234,"hiarpanetto@gmail.com","123praia",9648216,new Date(1999-05-20),"Masculino"));
         Mockito.when(userRepository.findById(5)).thenReturn(userTest);
         this.mockMvc.perform(
                 get("/api/user")
@@ -46,10 +46,10 @@ public class UserControllerTest {
     @Test
     public void shouldReturnJustOneFromResult() throws Exception {
         UserApp userTest = new UserApp(1,"Jhonantan",69473234,"jhon.caet@gmail.com","123praia",9648216,new Date(1999-05-20),"Masculino");
+        userRepository.save(userTest);
         Mockito.when(userRepository.findById(1)).thenReturn(Optional.of(userTest));
         this.mockMvc.perform(
-                get("/api/user")
-                        .queryParam("idUser","1")
+                get("/api/user/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));

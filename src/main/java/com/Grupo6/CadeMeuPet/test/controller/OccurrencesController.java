@@ -43,5 +43,4 @@ public class OccurrencesController {
         occurrencesService.updateOccurrences(occurrencesId, occurrencesDetails);
     }
 
-
 }

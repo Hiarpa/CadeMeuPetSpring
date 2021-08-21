@@ -30,6 +30,7 @@ public class OccurrencesController {
 
     @PostMapping
     public void registerNewOccurrences(@RequestBody Occurrences occurrences, @RequestParam Integer userId, @RequestParam Integer petId){
+
         occurrencesService.addNewOccurrences(occurrences, userId, petId);
     }
 
@@ -42,6 +43,5 @@ public class OccurrencesController {
     public void updateOccurrences(@PathVariable("occurrencesId") Integer occurrencesId, @RequestBody Occurrences occurrencesDetails){
         occurrencesService.updateOccurrences(occurrencesId, occurrencesDetails);
     }
-
 
 }

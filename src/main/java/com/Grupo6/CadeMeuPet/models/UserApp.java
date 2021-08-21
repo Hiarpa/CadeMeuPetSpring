@@ -1,5 +1,6 @@
 package com.Grupo6.CadeMeuPet.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,6 +32,11 @@ public class UserApp {
     private java.sql.Date birthDate;
     @Column(name = "gender")
     private String gender;
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name= "id_user")
+    private List<Occurrences> occurences;
 
     public UserApp() {
     }
@@ -167,6 +173,13 @@ public class UserApp {
         this.gender = gender;
     }
 
+    public List<Occurrences> getOccurences() {
+        return occurences;
+    }
+
+    public void setOccurences(List<Occurrences> occurences) {
+        this.occurences = occurences;
+    }
 }
 
 

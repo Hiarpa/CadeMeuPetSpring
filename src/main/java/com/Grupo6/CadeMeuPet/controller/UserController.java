@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "user")
+@RequestMapping(path = "api/user")
 
 public class UserController {
 
@@ -58,14 +58,14 @@ public class UserController {
     }
 
     @ApiOperation(
-            value = "Retonar o usuario cadastrado por id",
+            value = "Retorna o usuario cadastrado por id",
             response = UserApp.class,
-            notes = "Esta operação retorna o usuario requisitado pelo usuário"
+            notes = "Esta operação retorna o usuario correspondente ao id"
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Retorna um User com codigo 200",
+                    message = "Retorna um usuário com codigo 200",
                     response = UserApp.class
             ),
             @ApiResponse(
@@ -78,7 +78,7 @@ public class UserController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "User com este Id não foi encontrado"
+                    message = "Usuário com este Id não foi encontrado"
             ),
     })
 
@@ -90,13 +90,13 @@ public class UserController {
 
     @PostMapping(path = "/register")
     @ApiOperation(
-            value = "Registrar um novo User",
-            notes = "Esta operação cadastra um novo User atribuindo a um usuário."
+            value = "Registrar um novo usuário",
+            notes = "Esta operação cadastra um novo usuário no sistema."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Cadastra um novo User com 200"
+                    message = "Cadastra um novo usuário com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -113,13 +113,13 @@ public class UserController {
     }
 
     @ApiOperation(
-            value = "Deletar um User por id",
-            notes = "Esta operação deleta um User com o id requisitado pelo usuário."
+            value = "Deletar um usuário por id",
+            notes = "Esta operação deleta um usuário corrrespondente ao id."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Deleta um User com 200"
+                    message = "Deleta um usuário com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -131,7 +131,7 @@ public class UserController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "User com esse id não foi encontrado"
+                    message = "Usuário com esse id não foi encontrado"
             )
     })
 
@@ -141,13 +141,13 @@ public class UserController {
     }
 
     @ApiOperation(
-            value = "Atualiza os dados de um User",
-            notes = "Esta operação atualiza o usuario de um User requisitado pelo usuário."
+            value = "Atualiza os dados de um usuário",
+            notes = "Esta operação atualiza os dados de um usuario."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Atualiza um User com 200"
+                    message = "Atualiza um usuário com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -159,7 +159,7 @@ public class UserController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "User com esse id não foi encontrado"
+                    message = "Usuário com esse id não foi encontrado"
             )
     })
     @PatchMapping(path = "{userId}")

@@ -38,11 +38,20 @@ public class OccurrencesService {
         return occurrencesRepository.findById(occurrencesId);
     }
 
-    public void addNewOccurrences(Occurrences occurrences, Integer lostByUserID, Integer petId) {
-        UserApp lostByUser = userRepository.getById(lostByUserID);
+    public void addNewOccurrenceLost(Occurrences occurrences, Integer lostByUserId, Integer petId) {
+        UserApp lostByUser = userRepository.getById(lostByUserId);
         Pets pet = petsRepository.getById(petId);
 
         occurrences.setLostByUser(lostByUser);
+        occurrences.setPet(pet);
+        occurrencesRepository.save(occurrences);
+    }
+
+    public void addNewOccurrenceFound(Occurrences occurrences, Integer foundByUserId, Integer petId) {
+        UserApp foundByUser = userRepository.getById(foundByUserId);
+        Pets pet = petsRepository.getById(petId);
+
+        occurrences.setFoundByUser(foundByUser);
         occurrences.setPet(pet);
         occurrencesRepository.save(occurrences);
     }

@@ -1,4 +1,4 @@
-package com.Grupo6.CadeMeuPet.test.controller;
+package com.Grupo6.CadeMeuPet.controller;
 
 import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.service.AddressService;
@@ -63,7 +63,7 @@ public class AddressController {
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Retorna um Address com codigo 200",
+                    message = "Retorna um endereço com codigo 200",
                     response = Address.class
             ),
             @ApiResponse(
@@ -76,7 +76,7 @@ public class AddressController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Address com este Id não foi encontrado"
+                    message = "Endereço com este Id não foi encontrado"
             ),
     })
 
@@ -85,13 +85,13 @@ public class AddressController {
         return addressService.getAddressById(addressId); }
 
     @ApiOperation(
-            value = "Registrar um novo Address",
-            notes = "Esta operação cadastra um novo Address atribuindo a um usuário."
+            value = "Registrar um novo Endereço",
+            notes = "Esta operação cadastra um novo endereço atribuindo a um usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Cadastra um novo Address com 200"
+                    message = "Cadastra um novo endereço com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -109,13 +109,13 @@ public class AddressController {
     }
 
     @ApiOperation(
-            value = "Deletar um Address por id",
-            notes = "Esta operação deleta um Address com o id requisitado pelo usuário."
+            value = "Deletar um endereço por id",
+            notes = "Esta operação deleta um endereço com o id requisitado pelo usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Deleta um Address com 200"
+                    message = "Deleta um endereço com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -127,7 +127,7 @@ public class AddressController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Address com esse id não foi encontrado"
+                    message = "Endereço com esse id não foi encontrado"
             )
     })
 
@@ -136,13 +136,13 @@ public class AddressController {
         addressService.deleteAddress(addressId);
     }
     @ApiOperation(
-            value = "Atualiza os dados de um Address",
-            notes = "Esta operação atualiza o endereço de um Address requisitado pelo usuário."
+            value = "Atualiza os dados de um Endereço",
+            notes = "Esta operação atualiza o endereço de um endereço requisitado pelo usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Atualiza um Address com 200"
+                    message = "Atualiza um endereço com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -154,7 +154,7 @@ public class AddressController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Address com esse id não foi encontrado"
+                    message = "Endereço com esse id não foi encontrado"
             )
     })
     @PatchMapping(path = "{addressId}")

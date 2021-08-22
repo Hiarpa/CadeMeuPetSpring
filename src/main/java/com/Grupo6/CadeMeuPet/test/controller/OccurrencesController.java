@@ -28,7 +28,7 @@ public class OccurrencesController {
         return occurrencesService.getOccurrencesById(occurrencesId);
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewOccurrences(@RequestBody Occurrences occurrences, @RequestParam Integer userId, @RequestParam Integer petId){
         occurrencesService.addNewOccurrences(occurrences, userId, petId);
     }

@@ -34,7 +34,7 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewUser(@RequestBody UserApp user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.addNewUser(user);

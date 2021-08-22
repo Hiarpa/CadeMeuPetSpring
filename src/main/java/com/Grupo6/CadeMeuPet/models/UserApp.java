@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class UserApp {
 
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Integer idUser;
 
@@ -25,8 +24,8 @@ public class UserApp {
     private String email;
     @Column(name = "password")
     private String password;
-    @Column(name = "telephone")
-    private int telephone;
+    @Column(name = "phoneNumber")
+    private int phoneNumber;
     @Column(name = "birth_date")
     private java.sql.Date birthDate;
     @Column(name = "gender")
@@ -35,52 +34,27 @@ public class UserApp {
     public UserApp() {
     }
 
-    public UserApp(Integer idUser, String name, int cpf, String email, String password, int telephone, java.sql.Date birthDate, String gender) {
+    public UserApp(Integer idUser, String name, int cpf, String email, String password, int phoneNumber, java.sql.Date birthDate, String gender) {
         this.idUser = idUser;
         this.name = name;
         this.cpf = cpf;
         this.email = email;
         this.password = password;
-        this.telephone = telephone;
+        this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
         this.gender = gender;
     }
 
-    public UserApp(String name, int cpf, String email, String password, int telephone, Date birthDate, String gender) {
+    public UserApp(String name, int cpf, String email, String password, int phoneNumber, Date birthDate, String gender) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;
         this.password = password;
-        this.telephone = telephone;
+        this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
         this.gender = gender;
     }
 
-
-//    public void addPet(Pets pet){
-//        listPets.add(pet);
-//    }
-//
-//    public void deletePet(int id){
-//        listPets.remove(id);
-//    }
-
-//    public void verListaPets(){
-//        for(Pets valor: listPets){
-//            for(int i = 1; i < listPets.size(); i++){
-//                System.out.println("Name: " + valor.getName() + "\n"+
-//                        "Tipo: " + valor.getTipo() + "\n" +
-//                        "Genêro: " + valor.getGenero() + "\n" +
-//                        "Status: " + valor.getStatus() + "\n" +
-//                        "Porte: " + valor.getPorte() + "\n" +
-//                        "Local Achado: " + valor.getLocalA() + "\n" +
-//                        "Local Perdido: " + valor.getLocalP() + "\n" +
-//                        "Data em que foi achado: " + valor.getDataA() + "\n" +
-//                        "Data em que foi perdido: " + valor.getDataP() + "\n" +
-//                        "Imagem: " + valor.getImagem() + "\n" );
-//            }
-//        }
-//    }
 
     public void alterPet(Pets pet){
         Scanner scanner = new Scanner(System.in);
@@ -109,12 +83,6 @@ public class UserApp {
         }
     }
 
-    public void formatarData(){
-        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
-        setBirthDate(Date.valueOf(formatar.format(getBirthDate()
-        )));
-    }
-
     public Integer getIdUser() {
         return idUser;
     }
@@ -139,8 +107,8 @@ public class UserApp {
         this.password = password;
     }
 
-    public int getTelephone() {
-        return telephone;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
     public java.sql.Date getBirthDate() {
@@ -155,8 +123,8 @@ public class UserApp {
         this.email = email;
     }
 
-    public void setTelephone(int telephone) {
-        this.telephone = telephone;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public void setBirthDate(java.sql.Date birthDate) {

@@ -29,7 +29,7 @@ public class AddressController {
         return addressService.getAddressById(addressId);
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewAddress(@RequestBody Address address, @RequestParam Integer userId){
         addressService.addNewAddress(address, userId);
     }

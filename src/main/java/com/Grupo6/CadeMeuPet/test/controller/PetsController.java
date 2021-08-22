@@ -29,7 +29,7 @@ public class PetsController {
         return petsService.getPetById(petId);
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewPet(@RequestBody Pets pet, @RequestParam Integer userId){
         petsService.addNewPet(pet,userId);
     }

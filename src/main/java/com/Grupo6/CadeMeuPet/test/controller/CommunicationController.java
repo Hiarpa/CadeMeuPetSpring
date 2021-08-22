@@ -28,7 +28,7 @@ public class CommunicationController {
         return communicationService.getCommunicationById(communicationId);
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewCommunication(@RequestBody Communication communication,
                                          @RequestParam Integer receiverId,
                                          @RequestParam Integer senderId){

@@ -42,7 +42,7 @@ public class OccurrencesService {
         UserApp lostByUser = userRepository.getById(lostByUserID);
         Pets pet = petsRepository.getById(petId);
 
-        occurrences.setUser_lost_by(lostByUser);
+        occurrences.setLostByUser(lostByUser);
         occurrences.setPet(pet);
         occurrencesRepository.save(occurrences);
     }
@@ -59,17 +59,17 @@ public class OccurrencesService {
     public void updateOccurrences(Integer occurrencesId, Occurrences occurrencesDetails){
         Occurrences occurrences = occurrencesRepository.findOccurrencesById(occurrencesId);
 
-        if (occurrencesDetails.getFound_place() != null && occurrencesDetails.getFound_place().length() > 0 && !Objects.equals(occurrences.getFound_place(), occurrencesDetails.getFound_place())){
-            occurrences.setFound_place(occurrencesDetails.getFound_place());
+        if (occurrencesDetails.getFoundPlace() != null && occurrencesDetails.getFoundPlace().length() > 0 && !Objects.equals(occurrences.getFoundPlace(), occurrencesDetails.getFoundPlace())){
+            occurrences.setFoundPlace(occurrencesDetails.getFoundPlace());
         }
-        if (occurrencesDetails.getLost_place() != null && occurrencesDetails.getLost_place().length() > 0 && !Objects.equals(occurrences.getLost_place(), occurrencesDetails.getLost_place())){
-            occurrences.setFound_place(occurrencesDetails.getLost_place());
+        if (occurrencesDetails.getLostPlace() != null && occurrencesDetails.getLostPlace().length() > 0 && !Objects.equals(occurrences.getLostPlace(), occurrencesDetails.getLostPlace())){
+            occurrences.setFoundPlace(occurrencesDetails.getLostPlace());
         }
-        if(occurrencesDetails.getDate_lost() != null ){
-            occurrences.setDate_lost(occurrencesDetails.getDate_lost());
+        if(occurrencesDetails.getDateLost() != null ){
+            occurrences.setDateLost(occurrencesDetails.getDateLost());
         }
-        if(occurrencesDetails.getDate_found() != null ){
-            occurrences.setDate_found(occurrencesDetails.getDate_found());
+        if(occurrencesDetails.getDateFound() != null ){
+            occurrences.setDateFound(occurrencesDetails.getDateFound());
         }
     }
 }

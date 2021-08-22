@@ -63,7 +63,7 @@ public class OccurrencesService {
         for (Occurrences index : occurrences){
             if(index.getPet().getName().equals(pet.getName()) || index.getPet().getRegister().equals(pet.getRegister())) {
                 possibles.add(index);
-            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getCoat().equals(pet.getCoat()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
+            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getFur().equals(pet.getFur()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
                 if(index.getPet().getGender().equals(pet.getGender()) || index.getPet().getBreed().equals(pet.getBreed()) || index.getPet().getSpecies().equals(pet.getSpecies())){
                     possibles.add(index);
                 }

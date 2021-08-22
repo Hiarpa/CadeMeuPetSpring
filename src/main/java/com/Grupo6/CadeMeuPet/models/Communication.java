@@ -6,7 +6,8 @@ import javax.persistence.*;
 public class Communication {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "communication_sequence", sequenceName = "communication_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "communication_sequence")
     @Column(name = "id_communication")
     private Integer idCommunication;
 

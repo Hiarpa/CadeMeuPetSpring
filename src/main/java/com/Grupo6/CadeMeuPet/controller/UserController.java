@@ -1,4 +1,4 @@
-package com.Grupo6.CadeMeuPet.test.controller;
+package com.Grupo6.CadeMeuPet.controller;
 
 import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.service.UserService;

@@ -55,6 +55,24 @@ public class OccurrencesService {
         occurrencesRepository.deleteById(occurrencesId);
     }
 
+    public List<Occurrences> checkPetOccurrences(Pets pet){
+
+        List<Occurrences> occurrences = getOccurrences();
+        List<Occurrences> possibles = new ArrayList<>();
+
+        for (Occurrences index : occurrences){
+            if(index.getPet().getName().equals(pet.getName()) || index.getPet().getRegister().equals(pet.getRegister())) {
+                possibles.add(index);
+            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getCoat().equals(pet.getCoat()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
+                if(index.getPet().getGender().equals(pet.getGender()) || index.getPet().getBreed().equals(pet.getBreed()) || index.getPet().getSpecies().equals(pet.getSpecies())){
+                    possibles.add(index);
+                }
+            }
+        }
+
+        return possibles;
+    }
+
     @Transactional
     public void updateOccurrences(Integer occurrencesId, Occurrences occurrencesDetails){
         Occurrences occurrences = occurrencesRepository.findOccurrencesById(occurrencesId);
@@ -72,5 +90,6 @@ public class OccurrencesService {
             occurrences.setDateFound(occurrencesDetails.getDateFound());
         }
     }
+
 }
 

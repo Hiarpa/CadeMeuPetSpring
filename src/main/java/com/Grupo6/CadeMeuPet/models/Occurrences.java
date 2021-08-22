@@ -71,8 +71,18 @@ public class Occurrences {
         this.lostByUser = lostByUser;
     }
 
-    public Integer getIdOccurrence() {
-        return idOccurrence;
+   @Override
+    public String toString() {
+        return "Occurrences{" +
+                "id=" + id +
+                ", date_found=" + date_found +
+                ", date_lost=" + date_lost +
+                ", lost_place='" + lost_place + '\'' +
+                ", found_place='" + found_place + '\'' +
+                ", pet=" + pet +
+                ", user_found_by=" + user_found_by +
+                ", user_lost_by=" + user_lost_by +
+                '}';
     }
 
     public void setIdOccurrence(Integer idOccurrence) {

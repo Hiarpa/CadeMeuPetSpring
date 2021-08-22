@@ -2,6 +2,9 @@ package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Occurrences;
 import com.Grupo6.CadeMeuPet.service.OccurrencesService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

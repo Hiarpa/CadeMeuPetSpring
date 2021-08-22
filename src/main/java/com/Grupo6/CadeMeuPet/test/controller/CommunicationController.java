@@ -2,6 +2,9 @@ package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Communication;
 import com.Grupo6.CadeMeuPet.service.CommunicationService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

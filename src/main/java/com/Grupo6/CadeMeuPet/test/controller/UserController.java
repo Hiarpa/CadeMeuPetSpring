@@ -2,6 +2,9 @@ package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.UserApp;
 import com.Grupo6.CadeMeuPet.service.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +29,14 @@ public class UserController {
 
     @ApiOperation(
             value = "Listar todos os usuarios cadastrados",
-            response = User.class,
+            response = UserApp.class,
             notes = "Esta operação retorna a lista de usuarios cadastrados"
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
                     message = "Retorna um List com um codigo 200",
-                    response = User.class
+                    response = UserApp.class
             ),
             @ApiResponse(
                     code = 401,
@@ -56,14 +59,14 @@ public class UserController {
 
     @ApiOperation(
             value = "Retonar o usuario cadastrado por id",
-            response = User.class,
+            response = UserApp.class,
             notes = "Esta operação retorna o usuario requisitado pelo usuário"
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
                     message = "Retorna um User com codigo 200",
-                    response = User.class
+                    response = UserApp.class
             ),
             @ApiResponse(
                     code = 401,

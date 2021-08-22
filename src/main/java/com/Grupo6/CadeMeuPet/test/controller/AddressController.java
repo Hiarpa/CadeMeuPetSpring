@@ -2,6 +2,9 @@ package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.service.AddressService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +50,7 @@ public class AddressController {
     @GetMapping
     public List<Address> getAddress(){
         return addressService.getAddress();
-    }}
+    }
 
     @ApiOperation(
             value = "Retonar o endereço cadastrado por id",

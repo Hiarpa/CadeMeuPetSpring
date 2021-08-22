@@ -72,12 +72,5 @@ public class OccurrencesService {
         }
     }
 
-//    public void attemptUpdateOccurrence(Occurrences occurrenceToBeUpdated, Integer userId){
-//        System.out.println("Qual é o seu pet ?");
-//        List<Occurrences> occurencesList = new ArrayList(occurrencesRepository.findOccurrenceByUserId(userId));
-//        for (Occurrences indice: occurencesList){
-//            System.out.println(petsRepository.findPetById(indice.getId()).getName() + " - " +  petsRepository.findPetById(indice.getId()).getBreed());
-//        }
-//    }
 }
 

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/occurrences")
+@RequestMapping(path = "occurrences")
 public class OccurrencesController {
 
     private final OccurrencesService occurrencesService;

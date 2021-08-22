@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/pet")
+@RequestMapping(path = "pet")
 public class PetsController {
 
     private final PetsService petsService;

@@ -23,7 +23,7 @@ public class PetsController {
     }
 
     @ApiOperation(
-            value = "Listar todas os pets cadastrados",
+            value = "Listar todos os pets cadastrados",
             response = Pets.class,
             notes = "Esta operação retorna a lista de pets cadastrados"
     )

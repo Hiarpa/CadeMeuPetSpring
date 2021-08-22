@@ -48,8 +48,7 @@ public class UserControllerTest {
         UserApp userTest = new UserApp(1,"Jhonantan",69473234,"jhon.caet@gmail.com","123praia",9648216,new Date(1999-05-20),"Masculino");
         Mockito.when(userRepository.findById(1)).thenReturn(Optional.of(userTest));
         this.mockMvc.perform(
-                get("/api/user")
-                        .queryParam("idUser","1")
+                get("/api/user/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/pet")
+@RequestMapping(path = "pet")
 public class PetsController {
 
     private final PetsService petsService;
@@ -75,11 +75,12 @@ public class PetsController {
                     message = "Pet com este Id não foi encontrado"
             ),
     })
+
     @GetMapping("/{petId}")
     public Optional<Pets> getPetsById(@PathVariable Integer petId){
         return petsService.getPetById(petId);
     }
-
+  
     @ApiOperation(
             value = "Registrar um novo Pet",
             notes = "Esta operação cadastra um novo Pet atribuindo a um usuário."
@@ -98,7 +99,7 @@ public class PetsController {
                     message = "Token não autorizado"
             ),
     })
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewPet(@RequestBody Pets pet, @RequestParam Integer userId){
         petsService.addNewPet(pet,userId);
     }
@@ -152,6 +153,7 @@ public class PetsController {
                     message = "Pet com esse id não foi encontrado"
             )
     })
+  
     @PatchMapping(path = "{petId}")
     public void updatePet(@PathVariable("petId") Integer petId, @RequestBody Pets petDetails){
       petsService.updatePet(petId,petDetails);

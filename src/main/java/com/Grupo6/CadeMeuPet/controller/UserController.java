@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/user")
+@RequestMapping(path = "user")
+
 public class UserController {
 
     @Autowired
@@ -51,7 +52,6 @@ public class UserController {
                     message = "List não foi encontrada"
             ),
     })
-
     @GetMapping
     public List<UserApp> getUsers(){
         return userService.getUsers();
@@ -87,6 +87,8 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
+
+    @PostMapping(path = "/register")
     @ApiOperation(
             value = "Registrar um novo User",
             notes = "Esta operação cadastra um novo User atribuindo a um usuário."
@@ -105,12 +107,11 @@ public class UserController {
                     message = "Token não autorizado"
             ),
     })
-
-    @PostMapping
     public void registerNewUser(@RequestBody UserApp user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.addNewUser(user);
     }
+
     @ApiOperation(
             value = "Deletar um User por id",
             notes = "Esta operação deleta um User com o id requisitado pelo usuário."
@@ -161,7 +162,6 @@ public class UserController {
                     message = "User com esse id não foi encontrado"
             )
     })
-
     @PatchMapping(path = "{userId}")
     public void updateUser(@PathVariable("userId") Integer userId, @RequestBody UserApp userDetails){
         userService.updateUser(userId,userDetails);

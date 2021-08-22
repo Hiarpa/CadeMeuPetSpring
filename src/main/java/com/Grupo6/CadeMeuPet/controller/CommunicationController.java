@@ -2,6 +2,7 @@ package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Communication;
 import com.Grupo6.CadeMeuPet.service.CommunicationService;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/chat")
+@RequestMapping(path = "communication")
 public class CommunicationController {
     private final CommunicationService communicationService;
 
@@ -100,7 +101,7 @@ public class CommunicationController {
             ),
     })
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewCommunication(@RequestBody Communication communication,
                                          @RequestParam Integer receiverId,
                                          @RequestParam Integer senderId){
@@ -134,7 +135,7 @@ public class CommunicationController {
     public void deleteCommunication(@PathVariable("communicationId") Integer communicationId){
         communicationService.deleteCommunication(communicationId);
     }
-
+  
     @ApiOperation(
             value = "Atualiza os dados de um Communication",
             notes = "Esta operação atualiza a comunicação de um Communication requisitado pelo usuário."

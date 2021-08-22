@@ -2,9 +2,11 @@ package com.Grupo6.CadeMeuPet.test.controller;
 
 import com.Grupo6.CadeMeuPet.models.Address;
 import com.Grupo6.CadeMeuPet.service.AddressService;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/address")
+
 public class AddressController {
 
     private final AddressService addressService;
@@ -100,7 +103,7 @@ public class AddressController {
             ),
     })
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewAddress(@RequestBody Address address, @RequestParam Integer userId){
         addressService.addNewAddress(address, userId);
     }

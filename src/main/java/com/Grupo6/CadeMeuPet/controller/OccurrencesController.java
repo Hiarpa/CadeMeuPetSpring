@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/occurrences")
+@RequestMapping(path = "occurrences")
 public class OccurrencesController {
 
     private final OccurrencesService occurrencesService;
@@ -100,7 +100,7 @@ public class OccurrencesController {
             ),
     })
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewOccurrences(@RequestBody Occurrences occurrences, @RequestParam Integer userId, @RequestParam Integer petId){
 
         occurrencesService.addNewOccurrences(occurrences, userId, petId);

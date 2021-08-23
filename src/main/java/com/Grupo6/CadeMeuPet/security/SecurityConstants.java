@@ -2,8 +2,8 @@ package com.Grupo6.CadeMeuPet.security;
 
 public class SecurityConstants {
     public static final String SIGN_UP_URL = "/api/user/record";
-    public static final String LOST_PETS_URL = "/api/pets/lost/list";
-    public static final String FOUND_PETS_URL = "/api/pets/found/list";
+    public static final String LOST_PETS_URL = "/api/pets/list/search/lostpets";
+    public static final String FOUND_PETS_URL = "/api/pets/list/search/foundpets";
     public static final String[] AUTH_LIST = {
             // -- swagger ui
             "**/swagger-resources/**",

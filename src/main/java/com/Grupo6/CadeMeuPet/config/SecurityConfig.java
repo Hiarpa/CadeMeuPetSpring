@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()
+                .antMatchers(AUTH_LIST).authenticated()
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()))
@@ -40,16 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration conf  = new CorsConfiguration().applyPermitDefaultValues();
-        conf.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
-        conf.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
-        conf.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        conf.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
-        conf.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
-
+    CorsConfigurationSource corsConfigurationSource(){
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("api/**", conf);
+        source.registerCorsConfiguration("/api/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
 

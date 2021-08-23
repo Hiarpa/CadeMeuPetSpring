@@ -29,10 +29,10 @@ public class UserService {
     }
 
     public void addNewUser(UserApp user){
-//        Optional<UserApp> userAppOptional = userRepository.findUserByEmail(user.getEmail());
-//        if(userAppOptional.isPresent()){
-//            throw new IllegalStateException("email already in use!!");
-//        }
+        Optional<UserApp> userAppOptional = Optional.ofNullable(userRepository.findUserByEmail(user.getEmail()));
+        if(userAppOptional.isPresent()){
+            throw new IllegalStateException("email already in use!!");
+        }
         userRepository.save(user);
     }
 
@@ -54,8 +54,8 @@ public class UserService {
         if (userDetails.getGender() != null && userDetails.getGender().length() > 0 && !Objects.equals(user.getGender(), userDetails.getGender())){
             user.setGender(userDetails.getGender());
         }
-        if(userDetails.getTelephone() != 0){
-            user.setTelephone(userDetails.getTelephone());
+        if(userDetails.getPhoneNumber() != 0){
+            user.setPhoneNumber(userDetails.getPhoneNumber());
         }
         if(userDetails.getBirthDate() != null ){
             user.setBirthDate(userDetails.getBirthDate());

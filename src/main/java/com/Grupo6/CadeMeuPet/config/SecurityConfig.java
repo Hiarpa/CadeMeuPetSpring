@@ -17,6 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static com.Grupo6.CadeMeuPet.security.SecurityConstants.AUTH_LIST;
 import static com.Grupo6.CadeMeuPet.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -26,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()))
@@ -51,4 +52,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("api/**", conf);
         return source;
     }
+
 }

@@ -1,6 +1,7 @@
 package com.Grupo6.CadeMeuPet.service;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
+import com.Grupo6.CadeMeuPet.repository.OccurrencesRepository;
 import com.Grupo6.CadeMeuPet.repository.PetsRepository;
 import com.Grupo6.CadeMeuPet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,25 @@ import java.util.Optional;
 public class PetsService {
     private final PetsRepository petsRepository;
     private final UserRepository userRepository;
+    private final OccurrencesRepository occurrencesRepository;
 
     @Autowired
-    public PetsService(PetsRepository petsRepository, UserRepository userRepository){
+    public PetsService(PetsRepository petsRepository, UserRepository userRepository, OccurrencesRepository occurrencesRepository){
         this.petsRepository = petsRepository;
         this.userRepository = userRepository;
+        this.occurrencesRepository = occurrencesRepository;
     }
 
     public List<Pets> getPets(){
         return petsRepository.findAll();
+    }
+
+    public List<Pets> getLostPets(){
+        return occurrencesRepository.findLostOccurrences().getPet();
+    }
+
+    public List<Pets> getFoundPets(){
+        return occurrencesRepository.findFoundOccurrences().getPet();
     }
 
     public Optional<Pets> getPetById(Integer petsId){

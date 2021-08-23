@@ -49,7 +49,7 @@ public class AddressController {
             ),
     })
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Address> getAddress(){
         return addressService.getAddress();
     }
@@ -79,7 +79,7 @@ public class AddressController {
             ),
     })
 
-    @GetMapping("/{addressId}")
+    @GetMapping("/list/search/{addressId}")
     public Optional<Address> getAddressById(@PathVariable Integer addressId) {
         return addressService.getAddressById(addressId); }
 
@@ -102,7 +102,7 @@ public class AddressController {
             ),
     })
 
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/record")
     public void registerNewAddress(@RequestBody Address address, @RequestParam Integer userId){
         addressService.addNewAddress(address, userId);
     }
@@ -130,7 +130,7 @@ public class AddressController {
             )
     })
 
-    @DeleteMapping(path = "{addressId}")
+    @DeleteMapping(path = "/list/delete/{addressId}")
     public void deleteAddress(@PathVariable("addressId") Integer addressId){
         addressService.deleteAddress(addressId);
     }
@@ -158,7 +158,7 @@ public class AddressController {
             )
     })
 
-    @PatchMapping(path = "{addressId}")
+    @PatchMapping(path = "list/patch/{addressId}")
     public void updateAddress(@PathVariable("addressId") Integer addressId, @RequestBody Address addressDetails) {
         addressService.updateAddress(addressId, addressDetails);
     }

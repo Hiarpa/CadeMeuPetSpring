@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/user")
+@RequestMapping(path = "/api/user")
 public class UserController {
 
     @Autowired
@@ -52,7 +52,7 @@ public class UserController {
                     message = "List não foi encontrada"
             ),
     })
-    @GetMapping
+    @GetMapping("/list")
     public List<UserApp> getUsers(){
         return userService.getUsers();
     }
@@ -81,12 +81,11 @@ public class UserController {
                     message = "Usuário com este Id não foi encontrado"
             ),
     })
-    @GetMapping("/{userId}")
+    @GetMapping("/list/search/{userId}")
     public Optional<UserApp> getUserById(@PathVariable Integer userId) {
         return userService.getUserById(userId);
     }
 
-    @PostMapping(path = "/register")
     @ApiOperation(
             value = "Registrar um novo usuário",
             notes = "Esta operação cadastra um novo usuário no sistema."
@@ -105,7 +104,7 @@ public class UserController {
                     message = "Token não autorizado"
             ),
     })
-
+    @PostMapping("/record")
     public void registerNewUser(@RequestBody UserApp user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.addNewUser(user);
@@ -113,7 +112,7 @@ public class UserController {
 
     @ApiOperation(
             value = "Deletar um usuário por id",
-            notes = "Esta operação deleta um usuário corrrespondente ao id."
+            notes = "Esta operação deleta um usuário correspondente ao id."
     )
     @ApiResponses(value = {
             @ApiResponse(
@@ -133,8 +132,7 @@ public class UserController {
                     message = "Usuário com esse id não foi encontrado"
             )
     })
-
-    @DeleteMapping(path = "{userId}")
+    @DeleteMapping(path = "/list/delete/{userId}")
     public void deleteUser(@PathVariable("userId") Integer userId){
         userService.deleteUser(userId);
     }
@@ -161,7 +159,7 @@ public class UserController {
                     message = "Usuário com esse id não foi encontrado"
             )
     })
-    @PatchMapping(path = "{userId}")
+    @PatchMapping(path = "/list/patch/{userId}")
     public void updateUser(@PathVariable("userId") Integer userId, @RequestBody UserApp userDetails){
         userService.updateUser(userId,userDetails);
     }

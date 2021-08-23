@@ -46,7 +46,7 @@ public class PetsController {
                     message = "List não foi encontrada"
             ),
     })
-    @GetMapping
+    @GetMapping("/list")
     public List<Pets> getPets(){
         return petsService.getPets();
     }
@@ -75,7 +75,7 @@ public class PetsController {
                     message = "Pet com este Id não foi encontrado"
             ),
     })
-    @GetMapping("/{petId}")
+    @GetMapping("/list/search/{petId}")
     public Optional<Pets> getPetsById(@PathVariable Integer petId){
         return petsService.getPetById(petId);
     }
@@ -98,7 +98,7 @@ public class PetsController {
                     message = "Token não autorizado"
             ),
     })
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/record")
     public void registerNewPet(@RequestBody Pets pet, @RequestParam Integer userId){
         petsService.addNewPet(pet,userId);
     }
@@ -125,7 +125,7 @@ public class PetsController {
                     message = "Pet com esse id não foi encontrado"
             )
     })
-    @DeleteMapping(path = "{petId}")
+    @DeleteMapping(path = "/list/delete/{petId}")
     public void deletePet(@PathVariable("petId") Integer petId){
         petsService.deletePet(petId);
     }
@@ -153,7 +153,7 @@ public class PetsController {
             )
     })
   
-    @PatchMapping(path = "{petId}")
+    @PatchMapping(path = "/list/patch/{petId}")
     public void updatePet(@PathVariable("petId") Integer petId, @RequestBody Pets petDetails){
       petsService.updatePet(petId,petDetails);
     }

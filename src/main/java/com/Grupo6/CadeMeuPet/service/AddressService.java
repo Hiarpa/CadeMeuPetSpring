@@ -49,8 +49,8 @@ public class AddressService {
     public void updateAddress(Integer addressId, Address addressDetails){
         Address address = addressRepository.findAddressById(addressId);
 
-        if (addressDetails.getRoad() != null && addressDetails.getRoad().length() > 0 && !Objects.equals(address.getRoad(), addressDetails.getRoad())){
-            address.setRoad(addressDetails.getRoad());
+        if (addressDetails.getStreet() != null && addressDetails.getStreet().length() > 0 && !Objects.equals(address.getStreet(), addressDetails.getStreet())){
+            address.setStreet(addressDetails.getStreet());
         }
         if (addressDetails.getState() != null && addressDetails.getState().length() > 0 && !Objects.equals(address.getState(), addressDetails.getState())){
             address.setState(addressDetails.getState());

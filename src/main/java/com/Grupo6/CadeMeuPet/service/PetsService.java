@@ -1,9 +1,12 @@
 package com.Grupo6.CadeMeuPet.service;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
+import com.Grupo6.CadeMeuPet.repository.FilterRepository;
+import com.Grupo6.CadeMeuPet.repository.OccurrencesRepository;
 import com.Grupo6.CadeMeuPet.repository.PetsRepository;
 import com.Grupo6.CadeMeuPet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,15 +18,45 @@ import java.util.Optional;
 public class PetsService {
     private final PetsRepository petsRepository;
     private final UserRepository userRepository;
+    private final FilterRepository filterRepository;
 
     @Autowired
-    public PetsService(PetsRepository petsRepository, UserRepository userRepository){
+    public PetsService(PetsRepository petsRepository, UserRepository userRepository, FilterRepository filterRepository){
         this.petsRepository = petsRepository;
         this.userRepository = userRepository;
+        this.filterRepository = filterRepository;
     }
 
     public List<Pets> getPets(){
         return petsRepository.findAll();
+    }
+
+    public List<Pets> getLostPets(){
+       return petsRepository.findLostPets();
+    }
+
+    public List<Pets> getFoundPets(){
+        return petsRepository.findFoundPets();
+    }
+
+    public List<Pets> findPetByType(String petType){
+        return petsRepository.findPetByType(petType);
+    }
+//
+//    public List<Pets> findPetsBySize(String petsize){
+//        return petsRepository.findPetsBySize(petsize);
+//    }
+//
+//    public List<Pets> findPetsByGender(String gender){
+//        return petsRepository.findPetsByGender(gender);
+//    }
+//
+//    public List<Pets> findPetsByFur(String fur){
+//        return petsRepository.findPetsByFur(fur);
+//    }
+
+    public List<Pets> returnPetsWithFilter(String type, String status){
+        return filterRepository.findWithFilter(type, status);
     }
 
     public Optional<Pets> getPetById(Integer petsId){

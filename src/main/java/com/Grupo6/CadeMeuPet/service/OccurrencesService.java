@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Objects;
@@ -37,11 +38,20 @@ public class OccurrencesService {
         return occurrencesRepository.findById(occurrencesId);
     }
 
-    public void addNewOccurrences(Occurrences occurrences, Integer lostByUserID, Integer petId) {
-        UserApp lostByUser = userRepository.getById(lostByUserID);
+    public void addNewOccurrenceLost(Occurrences occurrences, Integer lostByUserId, Integer petId) {
+        UserApp lostByUser = userRepository.getById(lostByUserId);
         Pets pet = petsRepository.getById(petId);
 
-        occurrences.setUser_lost_by(lostByUser);
+        occurrences.setLostByUser(lostByUser);
+        occurrences.setPet(pet);
+        occurrencesRepository.save(occurrences);
+    }
+
+    public void addNewOccurrenceFound(Occurrences occurrences, Integer foundByUserId, Integer petId) {
+        UserApp foundByUser = userRepository.getById(foundByUserId);
+        Pets pet = petsRepository.getById(petId);
+
+        occurrences.setFoundByUser(foundByUser);
         occurrences.setPet(pet);
         occurrencesRepository.save(occurrences);
     }
@@ -54,22 +64,41 @@ public class OccurrencesService {
         occurrencesRepository.deleteById(occurrencesId);
     }
 
+    public List<Occurrences> checkPetOccurrences(Pets pet){
+
+        List<Occurrences> occurrences = getOccurrences();
+        List<Occurrences> possibles = new ArrayList<>();
+
+        for (Occurrences index : occurrences){
+            if(index.getPet().getName().equals(pet.getName()) || index.getPet().getRegister().equals(pet.getRegister())) {
+                possibles.add(index);
+            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getFur().equals(pet.getFur()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
+                if(index.getPet().getGender().equals(pet.getGender()) || index.getPet().getBreed().equals(pet.getBreed()) || index.getPet().getSpecies().equals(pet.getSpecies())){
+                    possibles.add(index);
+                }
+            }
+        }
+
+        return possibles;
+    }
+
     @Transactional
     public void updateOccurrences(Integer occurrencesId, Occurrences occurrencesDetails){
         Occurrences occurrences = occurrencesRepository.findOccurrencesById(occurrencesId);
 
-        if (occurrencesDetails.getFound_place() != null && occurrencesDetails.getFound_place().length() > 0 && !Objects.equals(occurrences.getFound_place(), occurrencesDetails.getFound_place())){
-            occurrences.setFound_place(occurrencesDetails.getFound_place());
+        if (occurrencesDetails.getFoundPlace() != null && occurrencesDetails.getFoundPlace().length() > 0 && !Objects.equals(occurrences.getFoundPlace(), occurrencesDetails.getFoundPlace())){
+            occurrences.setFoundPlace(occurrencesDetails.getFoundPlace());
         }
-        if (occurrencesDetails.getLost_place() != null && occurrencesDetails.getLost_place().length() > 0 && !Objects.equals(occurrences.getLost_place(), occurrencesDetails.getLost_place())){
-            occurrences.setFound_place(occurrencesDetails.getLost_place());
+        if (occurrencesDetails.getLostPlace() != null && occurrencesDetails.getLostPlace().length() > 0 && !Objects.equals(occurrences.getLostPlace(), occurrencesDetails.getLostPlace())){
+            occurrences.setFoundPlace(occurrencesDetails.getLostPlace());
         }
-        if(occurrencesDetails.getDate_lost() != null ){
-            occurrences.setDate_lost(occurrencesDetails.getDate_lost());
+        if(occurrencesDetails.getDateLost() != null ){
+            occurrences.setDateLost(occurrencesDetails.getDateLost());
         }
-        if(occurrencesDetails.getDate_found() != null ){
-            occurrences.setDate_found(occurrencesDetails.getDate_found());
+        if(occurrencesDetails.getDateFound() != null ){
+            occurrences.setDateFound(occurrencesDetails.getDateFound());
         }
     }
+
 }
 

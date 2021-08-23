@@ -6,7 +6,10 @@ import java.sql.Date;
 @Entity @Table(name = "pet")
 public class Pets  {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name = "id_pet")
+    @Id
+    @SequenceGenerator(name = "pets_sequence", sequenceName = "pets_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pets_sequence")
+    @Column(name = "id_pet")
     private Integer idPet;
     private String name;
     private String typePet;
@@ -17,8 +20,9 @@ public class Pets  {
     private String species;
     private String register;
     private String color;
-    private String coat;
+    private String fur;
     private String description;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_user")
@@ -27,7 +31,7 @@ public class Pets  {
     public Pets() {
     }
 
-    public Pets(String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String coat, String description) {
+    public Pets(String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String fur, String description, String status) {
         this.name = name;
         this.typePet = typePet;
         this.image = image;
@@ -37,11 +41,12 @@ public class Pets  {
         this.species = species;
         this.register = register;
         this.color = color;
-        this.coat = coat;
+        this.fur = fur;
         this.description = description;
+        this.status = status;
     }
 
-    public Pets(Integer idPet, String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String coat, String description, UserApp user) {
+    public Pets(Integer idPet, String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String fur, String description, String status, UserApp user) {
         this.idPet = idPet;
         this.name = name;
         this.typePet = typePet;
@@ -52,28 +57,16 @@ public class Pets  {
         this.species = species;
         this.register = register;
         this.color = color;
-        this.coat = coat;
+        this.fur = fur;
         this.description = description;
+        this.status = status;
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Pets{" +
-                "idPets=" + idPet +
-                ", name='" + name + '\'' +
-                ", tipo_pet='" + typePet + '\'' +
-                ", gender='" + gender + '\'' +
-                ", size='" + size + '\'' +
-                '}';
+    public String getStatus() {
+        return status;
     }
 
-//    public void verificar_status(){
-//        System.out.println("Encontrado por: " + user.occurences.getFoundBy());
-//        System.out.println("Perdido por: " + user.occurences.getFoundBy());
-//        System.out.println("Data em que foi encontrado: " + user.occurences.getDateFound());
-//        return;
-//    }
 
     public String getTypePet() {
         return typePet;
@@ -95,8 +88,8 @@ public class Pets  {
         return color;
     }
 
-    public String getCoat() {
-        return coat;
+    public String getFur() {
+        return fur;
     }
 
     public String getDescription() {
@@ -167,13 +160,16 @@ public class Pets  {
         this.color = color;
     }
 
-    public void setCoat(String coat) {
-        this.coat = coat;
+    public void setFur(String fur) {
+        this.fur = fur;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 

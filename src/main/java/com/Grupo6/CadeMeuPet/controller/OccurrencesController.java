@@ -47,7 +47,7 @@ public class OccurrencesController {
             ),
     })
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Occurrences> getOccurrences(){
         return occurrencesService.getOccurrences();
     }
@@ -76,7 +76,7 @@ public class OccurrencesController {
                     message = "Ocorrência com este id não foi encontrado"
             ),
     })
-    @GetMapping("/{occurrencesId}")
+    @GetMapping("/list/search/{occurrencesId}")
     public Optional<Occurrences> getOccurrencesById(@PathVariable Integer occurrencesId) {
         return occurrencesService.getOccurrencesById(occurrencesId);
     }
@@ -100,12 +100,12 @@ public class OccurrencesController {
                     message = "Token não autorizado"
             ),
     })
-    @PostMapping(path = "/register/petlost")
+    @PostMapping(path = "/record/petlost")
     public void registerNewOccurrenceLost(@RequestBody Occurrences occurrences, @RequestParam Integer userIdWhoLost, @RequestParam Integer petId){
         occurrencesService.addNewOccurrenceLost(occurrences, userIdWhoLost, petId);
     }
 
-    @PostMapping(path = "/register/petfound")
+    @PostMapping(path = "/record/petfound")
     public void registerNewOccurrenceFound(@RequestBody Occurrences occurrences, @RequestParam Integer userIdWhoFound, @RequestParam Integer petId){
         occurrencesService.addNewOccurrenceFound(occurrences, userIdWhoFound, petId);
     }
@@ -133,7 +133,7 @@ public class OccurrencesController {
             )
     })
 
-    @DeleteMapping(path = "{occurrencesId}")
+    @DeleteMapping(path = "/list/delete/{occurrencesId}")
     public void deleteOccurrences(@PathVariable("occurrencesId") Integer occurrencesId){
         occurrencesService.deleteOccurrences(occurrencesId);
     }
@@ -160,7 +160,7 @@ public class OccurrencesController {
                     message = "Ocorrência com esse id não foi encontrado"
             )
     })
-    @PatchMapping(path = "{occurrencesId}")
+    @PatchMapping(path = "/list/patch/{occurrencesId}")
     public void updateOccurrences(@PathVariable("occurrencesId") Integer occurrencesId, @RequestBody Occurrences occurrencesDetails){
         occurrencesService.updateOccurrences(occurrencesId, occurrencesDetails);
     }

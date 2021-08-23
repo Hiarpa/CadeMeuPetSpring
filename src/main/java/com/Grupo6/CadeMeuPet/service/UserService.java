@@ -42,6 +42,7 @@ public class UserService {
             throw new IllegalStateException("user with id " + userId + " does not exists.");
         }
         userRepository.deleteById(userId);
+
     }
 
     @Transactional

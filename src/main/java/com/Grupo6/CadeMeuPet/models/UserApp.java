@@ -1,12 +1,9 @@
 package com.Grupo6.CadeMeuPet.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.format.annotation.DateTimeFormat;
-
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,8 +33,14 @@ public class UserApp {
 
     @JsonIgnore
     @OneToMany
-    @JoinColumn(name= "id_user")
-    private List<Occurrences> occurences;
+    @JoinColumn(name= "fk_id_lost_by_user")
+    private List<Occurrences> occurrencesCasesLost;
+
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name= "fk_id_found_by_user")
+    private List<Occurrences> occurrencesCasesFound;
+
 
     public UserApp() {
     }
@@ -63,6 +66,18 @@ public class UserApp {
         this.gender = gender;
     }
 
+    public UserApp(Integer idUser, String name, int cpf, String email, String password, int phoneNumber, Date birthDate, String gender, List<Occurrences> occurrencesCasesLost, List<Occurrences> occurrencesCasesFound) {
+        this.idUser = idUser;
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.occurrencesCasesLost = occurrencesCasesLost;
+        this.occurrencesCasesFound = occurrencesCasesFound;
+    }
 
     public void alterPet(Pets pet){
         Scanner scanner = new Scanner(System.in);
@@ -143,12 +158,20 @@ public class UserApp {
         this.gender = gender;
     }
 
-    public List<Occurrences> getOccurences() {
-        return occurences;
+    public List<Occurrences> getOccurrencesCasesLost() {
+        return occurrencesCasesLost;
     }
 
-    public void setOccurences(List<Occurrences> occurences) {
-        this.occurences = occurences;
+    public void setOccurrencesCasesLost(List<Occurrences> occurrencesCasesLost) {
+        this.occurrencesCasesLost = occurrencesCasesLost;
+    }
+
+    public List<Occurrences> getOccurrencesCasesFound() {
+        return occurrencesCasesFound;
+    }
+
+    public void setOccurrencesCasesFound(List<Occurrences> occurrencesCasesFound) {
+        this.occurrencesCasesFound = occurrencesCasesFound;
     }
 }
 

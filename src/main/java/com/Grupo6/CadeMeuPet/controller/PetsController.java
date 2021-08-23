@@ -46,7 +46,7 @@ public class PetsController {
                     message = "List não foi encontrada"
             ),
     })
-    @GetMapping
+    @GetMapping("/list")
     public List<Pets> getPets(){
         return petsService.getPets();
     }
@@ -75,9 +75,41 @@ public class PetsController {
                     message = "Pet com este Id não foi encontrado"
             ),
     })
-    @GetMapping("/{petId}")
+    @GetMapping("/list/search/{petId}")
     public Optional<Pets> getPetsById(@PathVariable Integer petId){
         return petsService.getPetById(petId);
+    }
+
+    @ApiOperation(
+            value = "Retorna uma lista de pets perdidos",
+            response = Pets.class,
+            notes = "Esta operação retorna pets perdidos"
+    )
+    @GetMapping("/list/search/lostpets")
+    public List<Pets> getLostPets(){
+        return petsService.getLostPets();
+    }
+
+    @ApiOperation(
+            value = "Retorna uma lista de pets encontrados",
+            response = Pets.class,
+            notes = "Esta operação retorna pets encontrados"
+    )
+    @GetMapping("/list/search/foundpets")
+    public List<Pets> getFoundPets(){
+        return petsService.getFoundPets();
+    }
+    @ApiOperation(
+            value = "Retorna uma lista de pets utilizando os filtros",
+            response = Pets.class,
+            notes = "Esta operação retorna uma lista de pets com os filtros selecionados pelo usuário"
+    )
+    @GetMapping("/list/filters")
+    public List<Pets> getPetsWithFilter(
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "size", required = false) String status
+    ){
+        return petsService.returnPetsWithFilter(type,status);
     }
 
     @ApiOperation(
@@ -98,7 +130,7 @@ public class PetsController {
                     message = "Token não autorizado"
             ),
     })
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/record")
     public void registerNewPet(@RequestBody Pets pet, @RequestParam Integer userId){
         petsService.addNewPet(pet,userId);
     }
@@ -125,7 +157,7 @@ public class PetsController {
                     message = "Pet com esse id não foi encontrado"
             )
     })
-    @DeleteMapping(path = "{petId}")
+    @DeleteMapping(path = "/list/delete/{petId}")
     public void deletePet(@PathVariable("petId") Integer petId){
         petsService.deletePet(petId);
     }
@@ -153,7 +185,7 @@ public class PetsController {
             )
     })
   
-    @PatchMapping(path = "{petId}")
+    @PatchMapping(path = "/list/patch/{petId}")
     public void updatePet(@PathVariable("petId") Integer petId, @RequestBody Pets petDetails){
       petsService.updatePet(petId,petDetails);
     }

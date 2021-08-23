@@ -48,7 +48,7 @@ public class CommunicationController {
             ),
     })
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Communication> getCommunications(){
         return communicationService.getCommunications();
     }
@@ -78,7 +78,7 @@ public class CommunicationController {
             ),
     })
 
-    @GetMapping("/{communicationId}")
+    @GetMapping("/list/search/{communicationId}")
     public Optional<Communication> getCommunicationById(@PathVariable Integer communicationId){
         return communicationService.getCommunicationById(communicationId);
     }
@@ -102,7 +102,7 @@ public class CommunicationController {
             ),
     })
 
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/record")
     public void registerNewCommunication(@RequestBody Communication communication,
                                          @RequestParam Integer receiverId,
                                          @RequestParam Integer senderId){
@@ -132,7 +132,7 @@ public class CommunicationController {
             )
     })
 
-    @DeleteMapping(path = "{communicationId}")
+    @DeleteMapping(path = "/list/delete/{communicationId}")
     public void deleteCommunication(@PathVariable("communicationId") Integer communicationId){
         communicationService.deleteCommunication(communicationId);
     }
@@ -160,7 +160,7 @@ public class CommunicationController {
             )
     })
 
-    @PatchMapping(path = "{communicationId}")
+    @PatchMapping(path = "/list/patch/{communicationId}")
     public void updateCommunication(@PathVariable("communicationId") Integer communicationId, @RequestBody Communication communicationDetails){
         communicationService.updateCommunication(communicationId, communicationDetails);
     }

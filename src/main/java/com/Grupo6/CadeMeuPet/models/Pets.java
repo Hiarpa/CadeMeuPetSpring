@@ -22,6 +22,7 @@ public class Pets  {
     private String color;
     private String fur;
     private String description;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_user")
@@ -30,7 +31,7 @@ public class Pets  {
     public Pets() {
     }
 
-    public Pets(String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String fur, String description) {
+    public Pets(String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String fur, String description, String status) {
         this.name = name;
         this.typePet = typePet;
         this.image = image;
@@ -42,9 +43,10 @@ public class Pets  {
         this.color = color;
         this.fur = fur;
         this.description = description;
+        this.status = status;
     }
 
-    public Pets(Integer idPet, String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String fur, String description, UserApp user) {
+    public Pets(Integer idPet, String name, String typePet, String image, String gender, String size, String breed, String species, String register, String color, String fur, String description, String status, UserApp user) {
         this.idPet = idPet;
         this.name = name;
         this.typePet = typePet;
@@ -57,19 +59,14 @@ public class Pets  {
         this.color = color;
         this.fur = fur;
         this.description = description;
+        this.status = status;
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Pets{" +
-                "idPets=" + idPet +
-                ", name='" + name + '\'' +
-                ", tipo_pet='" + typePet + '\'' +
-                ", gender='" + gender + '\'' +
-                ", size='" + size + '\'' +
-                '}';
+    public String getStatus() {
+        return status;
     }
+
 
     public String getTypePet() {
         return typePet;
@@ -171,5 +168,8 @@ public class Pets  {
         this.description = description;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 

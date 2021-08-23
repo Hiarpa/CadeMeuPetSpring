@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/address")
-
 public class AddressController {
 
     private final AddressService addressService;
@@ -135,6 +134,7 @@ public class AddressController {
     public void deleteAddress(@PathVariable("addressId") Integer addressId){
         addressService.deleteAddress(addressId);
     }
+  
     @ApiOperation(
             value = "Atualiza os dados de um Endereço",
             notes = "Esta operação atualiza o endereço de um endereço requisitado pelo usuário."
@@ -157,6 +157,7 @@ public class AddressController {
                     message = "Endereço com esse id não foi encontrado"
             )
     })
+
     @PatchMapping(path = "{addressId}")
     public void updateAddress(@PathVariable("addressId") Integer addressId, @RequestBody Address addressDetails) {
         addressService.updateAddress(addressId, addressDetails);

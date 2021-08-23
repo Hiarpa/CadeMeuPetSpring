@@ -5,6 +5,7 @@ import com.Grupo6.CadeMeuPet.service.OccurrencesService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -50,7 +51,7 @@ public class OccurrencesController {
     public List<Occurrences> getOccurrences(){
         return occurrencesService.getOccurrences();
     }
-
+  
     @ApiOperation(
             value = "Retorna a ocorrencia cadastrada por id",
             response = Occurrences.class,
@@ -75,11 +76,11 @@ public class OccurrencesController {
                     message = "Ocorrência com este id não foi encontrado"
             ),
     })
-
     @GetMapping("/{occurrencesId}")
     public Optional<Occurrences> getOccurrencesById(@PathVariable Integer occurrencesId) {
         return occurrencesService.getOccurrencesById(occurrencesId);
     }
+
 
     @ApiOperation(
             value = "Registrar uma nova ocorrência para um Pet perdido",
@@ -108,7 +109,6 @@ public class OccurrencesController {
     public void registerNewOccurrenceFound(@RequestBody Occurrences occurrences, @RequestParam Integer userIdWhoFound, @RequestParam Integer petId){
         occurrencesService.addNewOccurrenceFound(occurrences, userIdWhoFound, petId);
     }
-
 
     @ApiOperation(
             value = "Deletar uma ocorrência por id",
@@ -160,10 +160,8 @@ public class OccurrencesController {
                     message = "Ocorrência com esse id não foi encontrado"
             )
     })
-
     @PatchMapping(path = "{occurrencesId}")
     public void updateOccurrences(@PathVariable("occurrencesId") Integer occurrencesId, @RequestBody Occurrences occurrencesDetails){
         occurrencesService.updateOccurrences(occurrencesId, occurrencesDetails);
     }
-
 }

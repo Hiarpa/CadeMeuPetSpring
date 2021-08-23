@@ -75,12 +75,11 @@ public class PetsController {
                     message = "Pet com este Id não foi encontrado"
             ),
     })
-
     @GetMapping("/{petId}")
     public Optional<Pets> getPetsById(@PathVariable Integer petId){
         return petsService.getPetById(petId);
     }
-  
+
     @ApiOperation(
             value = "Registrar um novo Pet",
             notes = "Esta operação cadastra um novo Pet atribuindo a um usuário."

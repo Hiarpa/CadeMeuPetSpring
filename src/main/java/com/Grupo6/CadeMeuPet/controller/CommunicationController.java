@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/communication")
+
 public class CommunicationController {
     private final CommunicationService communicationService;
 
@@ -135,7 +136,7 @@ public class CommunicationController {
     public void deleteCommunication(@PathVariable("communicationId") Integer communicationId){
         communicationService.deleteCommunication(communicationId);
     }
-  
+
     @ApiOperation(
             value = "Atualiza os dados de uma comunicação",
             notes = "Esta operação atualiza a comunicação de uma comunicação requisitado pelo usuário."

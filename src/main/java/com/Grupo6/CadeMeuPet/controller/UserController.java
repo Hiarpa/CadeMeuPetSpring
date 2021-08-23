@@ -5,6 +5,7 @@ import com.Grupo6.CadeMeuPet.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/user")
-
 public class UserController {
 
     @Autowired
@@ -81,12 +81,10 @@ public class UserController {
                     message = "Usuário com este Id não foi encontrado"
             ),
     })
-
     @GetMapping("/{userId}")
     public Optional<UserApp> getUserById(@PathVariable Integer userId) {
         return userService.getUserById(userId);
     }
-
 
     @PostMapping(path = "/register")
     @ApiOperation(
@@ -107,6 +105,7 @@ public class UserController {
                     message = "Token não autorizado"
             ),
     })
+
     public void registerNewUser(@RequestBody UserApp user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.addNewUser(user);

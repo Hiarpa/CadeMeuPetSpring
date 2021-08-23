@@ -2,8 +2,6 @@ package com.Grupo6.CadeMeuPet.config;
 
 import com.Grupo6.CadeMeuPet.security.AuthenticationFilter;
 import com.Grupo6.CadeMeuPet.security.AuthorizationFilter;
-import com.Grupo6.CadeMeuPet.service.ApplicationUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -50,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         conf.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", conf);
+        source.registerCorsConfiguration("api/**", conf);
         return source;
     }
 }

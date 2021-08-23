@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.Grupo6</groupId>
 	<artifactId>CadeMeuPet</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>CadeMeuPet</name>
 	<description>Aplicação Backend Cadê Meu Pet</description>
 	<properties>

@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.GET, FOUND_PETS_URL).permitAll()
                 .antMatchers(HttpMethod.GET, LOST_PETS_URL).permitAll()
+                .antMatchers(HttpMethod.GET,ALL_PETS_URL).permitAll()
                 .antMatchers(AUTH_LIST).authenticated()
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager()))

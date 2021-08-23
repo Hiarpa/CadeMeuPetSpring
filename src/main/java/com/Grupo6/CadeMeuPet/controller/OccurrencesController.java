@@ -1,4 +1,4 @@
-package com.Grupo6.CadeMeuPet.test.controller;
+package com.Grupo6.CadeMeuPet.controller;
 
 import com.Grupo6.CadeMeuPet.models.Occurrences;
 import com.Grupo6.CadeMeuPet.service.OccurrencesService;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "occurrences")
+@RequestMapping(path = "api/occurrences")
 public class OccurrencesController {
 
     private final OccurrencesService occurrencesService;
@@ -52,14 +52,14 @@ public class OccurrencesController {
     }
 
     @ApiOperation(
-            value = "Retonar a ocorrencia cadastrada por id",
+            value = "Retorna a ocorrencia cadastrada por id",
             response = Occurrences.class,
             notes = "Esta operação retorna a ocorrencia requisitada pelo usuário"
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Retorna um Occurrences com codigo 200",
+                    message = "Retorna uma ocorrência com codigo 200",
                     response = Occurrences.class
             ),
             @ApiResponse(
@@ -72,7 +72,7 @@ public class OccurrencesController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Occurrences com este Id não foi encontrado"
+                    message = "Ocorrência com este id não foi encontrado"
             ),
     })
 
@@ -82,13 +82,13 @@ public class OccurrencesController {
     }
 
     @ApiOperation(
-            value = "Registrar novos Occurrences",
-            notes = "Esta operação cadastra novos Occurrences atribuindo a um usuário."
+            value = "Registrar uma nova ocorrência para um Pet perdido",
+            notes = "Esta operação cadastra uma ocorrência atribuindo a um pet e o usuário que perdeu o pet."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Cadastra novos Occurrences com 200"
+                    message = "Cadastra novos ocorrência com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -99,20 +99,25 @@ public class OccurrencesController {
                     message = "Token não autorizado"
             ),
     })
-
-    @PostMapping(path = "/register")
-    public void registerNewOccurrences(@RequestBody Occurrences occurrences, @RequestParam Integer userId, @RequestParam Integer petId){
-
-        occurrencesService.addNewOccurrences(occurrences, userId, petId);
+    @PostMapping(path = "/register/petlost")
+    public void registerNewOccurrenceLost(@RequestBody Occurrences occurrences, @RequestParam Integer userIdWhoLost, @RequestParam Integer petId){
+        occurrencesService.addNewOccurrenceLost(occurrences, userIdWhoLost, petId);
     }
+
+    @PostMapping(path = "/register/petfound")
+    public void registerNewOccurrenceFound(@RequestBody Occurrences occurrences, @RequestParam Integer userIdWhoFound, @RequestParam Integer petId){
+        occurrencesService.addNewOccurrenceFound(occurrences, userIdWhoFound, petId);
+    }
+
+
     @ApiOperation(
-            value = "Deletar um Occurrences por id",
-            notes = "Esta operação deleta Occurrences com o id requisitado pelo usuário."
+            value = "Deletar uma ocorrência por id",
+            notes = "Esta operação deleta ocorrência com o id requisitado pelo usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Deleta um Occurrences com 200"
+                    message = "Deleta uma ocorrência com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -124,7 +129,7 @@ public class OccurrencesController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Occurrences com esse id não foi encontrado"
+                    message = "Ocorrência com esse id não foi encontrado"
             )
     })
 
@@ -134,13 +139,13 @@ public class OccurrencesController {
     }
 
     @ApiOperation(
-            value = "Atualiza os dados de um Occurrences",
+            value = "Atualiza os dados de um ocorrência",
             notes = "Esta operação atualiza a ocorrencia de um Occurrences requisitado pelo usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Atualiza um Occurrences com 200"
+                    message = "Atualiza uma ocorrência com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -152,7 +157,7 @@ public class OccurrencesController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Occurrences com esse id não foi encontrado"
+                    message = "Ocorrência com esse id não foi encontrado"
             )
     })
 

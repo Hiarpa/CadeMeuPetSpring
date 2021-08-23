@@ -7,7 +7,8 @@ import java.sql.Date;
 public class Pets  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "pets_sequence", sequenceName = "pets_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pets_sequence")
     @Column(name = "id_pet")
     private Integer idPet;
     private String name;

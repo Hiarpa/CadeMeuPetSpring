@@ -46,7 +46,6 @@ public class UserControllerTest {
     @Test
     public void shouldReturnJustOneFromResult() throws Exception {
         UserApp userTest = new UserApp(1,"Jhonantan",69473234,"jhon.caet@gmail.com","123praia",9648216,new Date(1999-05-20),"Masculino");
-        userRepository.save(userTest);
         Mockito.when(userRepository.findById(1)).thenReturn(Optional.of(userTest));
         this.mockMvc.perform(
                 get("/api/user/1")

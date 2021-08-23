@@ -1,4 +1,4 @@
-package com.Grupo6.CadeMeuPet.test.controller;
+package com.Grupo6.CadeMeuPet.controller;
 
 import com.Grupo6.CadeMeuPet.models.Communication;
 import com.Grupo6.CadeMeuPet.service.CommunicationService;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "communication")
+@RequestMapping(path = "api/communication")
 public class CommunicationController {
     private final CommunicationService communicationService;
 
@@ -53,14 +53,14 @@ public class CommunicationController {
     }
 
     @ApiOperation(
-            value = "Retonar a comunicação cadastrada por id",
+            value = "Retorna a comunicação cadastrada por id",
             response = Communication.class,
             notes = "Esta operação retorna a comunicação requisitada pelo usuário"
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Retorna um Communication com codigo 200",
+                    message = "Retorna uma comunicação  com codigo 200",
                     response = Communication.class
             ),
             @ApiResponse(
@@ -73,7 +73,7 @@ public class CommunicationController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Communication com este Id não foi encontrado"
+                    message = "Comunicação com este Id não foi encontrado"
             ),
     })
 
@@ -83,13 +83,13 @@ public class CommunicationController {
     }
 
     @ApiOperation(
-            value = "Registrar um novo Communication",
-            notes = "Esta operação cadastra um novo Communication atribuindo a um usuário."
+            value = "Registrar uma nova comunicação",
+            notes = "Esta operação cadastra uma nova comunicação atribuindo a dois usuários."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Cadastra um novo Communication com 200"
+                    message = "Cadastra uma nova comunicação com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -109,13 +109,13 @@ public class CommunicationController {
     }
 
     @ApiOperation(
-            value = "Deletar um Communication por id",
-            notes = "Esta operação deleta um Communication com o id requisitado pelo usuário."
+            value = "Deletar uma comunicação por id",
+            notes = "Esta operação deleta uma comunicação com o id requisitado pelo usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Deleta um Communication com 200"
+                    message = "Deleta uma comunicação com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -127,7 +127,7 @@ public class CommunicationController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Communication com esse id não foi encontrado"
+                    message = "Comunicação com esse id não foi encontrado"
             )
     })
 
@@ -137,13 +137,13 @@ public class CommunicationController {
     }
   
     @ApiOperation(
-            value = "Atualiza os dados de um Communication",
-            notes = "Esta operação atualiza a comunicação de um Communication requisitado pelo usuário."
+            value = "Atualiza os dados de uma comunicação",
+            notes = "Esta operação atualiza a comunicação de uma comunicação requisitado pelo usuário."
     )
     @ApiResponses(value = {
             @ApiResponse(
                     code = 200,
-                    message = "Atualiza um Communication com 200"
+                    message = "Atualiza uma comunicação com 200"
             ),
             @ApiResponse(
                     code = 401,
@@ -155,7 +155,7 @@ public class CommunicationController {
             ),
             @ApiResponse(
                     code = 404,
-                    message = "Communication com esse id não foi encontrado"
+                    message = "Comunicação com esse id não foi encontrado"
             )
     })
 

@@ -1,4 +1,4 @@
-package com.Grupo6.CadeMeuPet.test.controller;
+package com.Grupo6.CadeMeuPet.controller;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
 import com.Grupo6.CadeMeuPet.service.PetsService;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "pet")
+@RequestMapping(path = "api/pet")
 public class PetsController {
 
     private final PetsService petsService;
@@ -52,7 +52,7 @@ public class PetsController {
     }
 
     @ApiOperation(
-            value = "Retonar o pet cadastrado por id",
+            value = "Retorna o pet cadastrado por id",
             response = Pets.class,
             notes = "Esta operação retorna o pet requisitado pelo usuário"
     )

@@ -13,7 +13,8 @@ import java.util.Scanner;
 public class UserApp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     @Column(name = "id_user")
     private Integer idUser;
 
@@ -25,7 +26,7 @@ public class UserApp {
     private String email;
     @Column(name = "password")
     private String password;
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private int phoneNumber;
     @Column(name = "birth_date")
     private java.sql.Date birthDate;

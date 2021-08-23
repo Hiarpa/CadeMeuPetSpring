@@ -2,8 +2,6 @@ package com.Grupo6.CadeMeuPet.config;
 
 import com.Grupo6.CadeMeuPet.security.AuthenticationFilter;
 import com.Grupo6.CadeMeuPet.security.AuthorizationFilter;
-import com.Grupo6.CadeMeuPet.service.ApplicationUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 import static com.Grupo6.CadeMeuPet.security.SecurityConstants.AUTH_LIST;
 import static com.Grupo6.CadeMeuPet.security.SecurityConstants.SIGN_UP_URL;
@@ -39,9 +40,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration conf  = new CorsConfiguration().applyPermitDefaultValues();
+        conf.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
+        conf.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+        conf.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        conf.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
+        conf.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
+
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("api/**", conf);
         return source;
     }
+
 }

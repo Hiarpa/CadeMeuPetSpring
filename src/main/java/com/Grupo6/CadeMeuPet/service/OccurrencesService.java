@@ -38,11 +38,20 @@ public class OccurrencesService {
         return occurrencesRepository.findById(occurrencesId);
     }
 
-    public void addNewOccurrences(Occurrences occurrences, Integer lostByUserID, Integer petId) {
-        UserApp lostByUser = userRepository.getById(lostByUserID);
+    public void addNewOccurrenceLost(Occurrences occurrences, Integer lostByUserId, Integer petId) {
+        UserApp lostByUser = userRepository.getById(lostByUserId);
         Pets pet = petsRepository.getById(petId);
 
         occurrences.setLostByUser(lostByUser);
+        occurrences.setPet(pet);
+        occurrencesRepository.save(occurrences);
+    }
+
+    public void addNewOccurrenceFound(Occurrences occurrences, Integer foundByUserId, Integer petId) {
+        UserApp foundByUser = userRepository.getById(foundByUserId);
+        Pets pet = petsRepository.getById(petId);
+
+        occurrences.setFoundByUser(foundByUser);
         occurrences.setPet(pet);
         occurrencesRepository.save(occurrences);
     }
@@ -63,7 +72,7 @@ public class OccurrencesService {
         for (Occurrences index : occurrences){
             if(index.getPet().getName().equals(pet.getName()) || index.getPet().getRegister().equals(pet.getRegister())) {
                 possibles.add(index);
-            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getCoat().equals(pet.getCoat()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
+            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getFur().equals(pet.getFur()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
                 if(index.getPet().getGender().equals(pet.getGender()) || index.getPet().getBreed().equals(pet.getBreed()) || index.getPet().getSpecies().equals(pet.getSpecies())){
                     possibles.add(index);
                 }

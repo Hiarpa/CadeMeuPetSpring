@@ -1,10 +1,12 @@
 package com.Grupo6.CadeMeuPet.service;
 
 import com.Grupo6.CadeMeuPet.models.Pets;
+import com.Grupo6.CadeMeuPet.repository.FilterRepository;
 import com.Grupo6.CadeMeuPet.repository.OccurrencesRepository;
 import com.Grupo6.CadeMeuPet.repository.PetsRepository;
 import com.Grupo6.CadeMeuPet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,13 +18,13 @@ import java.util.Optional;
 public class PetsService {
     private final PetsRepository petsRepository;
     private final UserRepository userRepository;
-    private final OccurrencesRepository occurrencesRepository;
+    private final FilterRepository filterRepository;
 
     @Autowired
-    public PetsService(PetsRepository petsRepository, UserRepository userRepository, OccurrencesRepository occurrencesRepository){
+    public PetsService(PetsRepository petsRepository, UserRepository userRepository, FilterRepository filterRepository){
         this.petsRepository = petsRepository;
         this.userRepository = userRepository;
-        this.occurrencesRepository = occurrencesRepository;
+        this.filterRepository = filterRepository;
     }
 
     public List<Pets> getPets(){
@@ -30,11 +32,31 @@ public class PetsService {
     }
 
     public List<Pets> getLostPets(){
-        return occurrencesRepository.findLostOccurrences().getPet();
+       return petsRepository.findLostPets();
     }
 
     public List<Pets> getFoundPets(){
-        return occurrencesRepository.findFoundOccurrences().getPet();
+        return petsRepository.findFoundPets();
+    }
+
+    public List<Pets> findPetByType(String petType){
+        return petsRepository.findPetByType(petType);
+    }
+//
+//    public List<Pets> findPetsBySize(String petsize){
+//        return petsRepository.findPetsBySize(petsize);
+//    }
+//
+//    public List<Pets> findPetsByGender(String gender){
+//        return petsRepository.findPetsByGender(gender);
+//    }
+//
+//    public List<Pets> findPetsByFur(String fur){
+//        return petsRepository.findPetsByFur(fur);
+//    }
+
+    public List<Pets> returnPetsWithFilter(String type, String status){
+        return filterRepository.findWithFilter(type, status);
     }
 
     public Optional<Pets> getPetById(Integer petsId){

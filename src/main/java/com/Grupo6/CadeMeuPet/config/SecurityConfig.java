@@ -17,8 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static com.Grupo6.CadeMeuPet.security.SecurityConstants.AUTH_LIST;
-import static com.Grupo6.CadeMeuPet.security.SecurityConstants.SIGN_UP_URL;
+import static com.Grupo6.CadeMeuPet.security.SecurityConstants.*;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, FOUND_PETS_URL).permitAll()
+                .antMatchers(HttpMethod.GET, LOST_PETS_URL).permitAll()
                 .antMatchers(AUTH_LIST).authenticated()
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager()))
@@ -45,11 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         conf.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
         conf.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
         conf.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        conf.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
-        conf.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
+        conf.setExposedHeaders(Arrays.asList("Authorization", "content-type","token"));
+        conf.setAllowedHeaders(Arrays.asList("Authorization", "content-type", "token"));
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", conf);
+        source.registerCorsConfiguration("/**", conf);
         return source;
     }
 

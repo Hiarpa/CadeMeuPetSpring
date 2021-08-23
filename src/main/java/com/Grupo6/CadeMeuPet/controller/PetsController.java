@@ -81,6 +81,38 @@ public class PetsController {
     }
 
     @ApiOperation(
+            value = "Retorna uma lista de pets perdidos",
+            response = Pets.class,
+            notes = "Esta operação retorna pets perdidos"
+    )
+    @GetMapping("/list/search/lostpets")
+    public List<Pets> getLostPets(){
+        return petsService.getLostPets();
+    }
+
+    @ApiOperation(
+            value = "Retorna uma lista de pets encontrados",
+            response = Pets.class,
+            notes = "Esta operação retorna pets encontrados"
+    )
+    @GetMapping("/list/search/foundpets")
+    public List<Pets> getFoundPets(){
+        return petsService.getFoundPets();
+    }
+    @ApiOperation(
+            value = "Retorna uma lista de pets utilizando os filtros",
+            response = Pets.class,
+            notes = "Esta operação retorna uma lista de pets com os filtros selecionados pelo usuário"
+    )
+    @GetMapping("/list/filters")
+    public List<Pets> getPetsWithFilter(
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "size", required = false) String status
+    ){
+        return petsService.returnPetsWithFilter(type,status);
+    }
+
+    @ApiOperation(
             value = "Registrar um novo Pet",
             notes = "Esta operação cadastra um novo Pet atribuindo a um usuário."
     )

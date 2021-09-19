@@ -64,21 +64,28 @@ public class OccurrencesService {
         occurrencesRepository.deleteById(occurrencesId);
     }
 
+    public boolean haveSameCharacteristic(Pets occurrencePet, Pets pet){
+         boolean sameApperence = occurrencePet.getTypePet().equals(pet.getTypePet()) && occurrencePet.getFur().equals(pet.getFur())
+                && occurrencePet.getColor().equals(pet.getColor()) && occurrencePet.getSize().equals(pet.getSize());
+         boolean sameAttribute = occurrencePet.getGender().equals(pet.getGender()) || occurrencePet.getBreed().equals(pet.getBreed()) || occurrencePet.getSpecies().equals(pet.getSpecies());
+        return sameApperence && sameAttribute;
+    }
+
     public List<Occurrences> checkPetOccurrences(Pets pet){
 
         List<Occurrences> occurrences = getOccurrences();
         List<Occurrences> possibles = new ArrayList<>();
 
         for (Occurrences index : occurrences){
-            if(index.getPet().getName().equals(pet.getName()) || index.getPet().getRegister().equals(pet.getRegister())) {
+            Pets occurrencePets = index.getPet();
+            if(occurrencePets.getName().equals(pet.getName()) || occurrencePets.getRegister().equals(pet.getRegister())) {
                 possibles.add(index);
-            } else if(index.getPet().getTypePet().equals(pet.getTypePet()) && index.getPet().getFur().equals(pet.getFur()) && index.getPet().getColor().equals(pet.getColor()) && index.getPet().getSize().equals(pet.getSize())){
-                if(index.getPet().getGender().equals(pet.getGender()) || index.getPet().getBreed().equals(pet.getBreed()) || index.getPet().getSpecies().equals(pet.getSpecies())){
+            } else if(haveSameCharacteristic(occurrencePets, pet)){
+                if(haveSameCharacteristic(occurrencePets, pet)){
                     possibles.add(index);
                 }
             }
         }
-
         return possibles;
     }
 
